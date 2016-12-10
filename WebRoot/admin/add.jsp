@@ -9,6 +9,23 @@
 	<title>登录 - 手机试题招聘平台</title>
 	<link rel="stylesheet" type="text/css" href="../style/register-login.css">
 	<link rel="stylesheet" type="text/css" href="../style/add.css">
+	<link rel="stylesheet" type="text/css" href="../js/jquery.multiselect.css" />
+	<link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/ui-lightness/jquery-ui.css" />
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.js"></script>
+
+<script type="text/javascript" src="../js/jquery.ui.core.js"></script>
+<script type="text/javascript" src="../js/jquery.ui.widget.js"></script>
+<script type="text/javascript" src="../js/jquery.multiselect.js"></script>
+<script type="text/javascript">
+$(function(){
+    $("select").multiselect({
+        noneSelectedText: "==请选择==",
+        checkAllText: "全选",
+        uncheckAllText: '全不选',
+        selectedList:4
+    });
+});
+</script>
 </head>
 <body>
 <div id="box"></div>
@@ -45,21 +62,23 @@
 			<input type="radio" name="correct" value="C"> 3
 			<input type="radio" name="correct" value="D"> 4		
 			<br>
-			<select id ="sela" title="Basic example" multiple="multiple" name="example-basic" size="5"> 
-<option value="V1">Option 1</option> 
-<option value="V2">Option 2</option> 
-<option value="V3">Option 3</option> 
-<option value="option4">Option 4</option> 
-<option value="option5">Option 5</option> 
-<option value="option6">Option 6</option> 
-<option value="option7">Option 7</option> 
-<option value="option8">Option 8</option> 
-<option value="option9">Option 9</option> 
-<option value="option10">Option 10</option> 
-<option value="option11">Option 11</option> 
-<option value="option12">Option 12</option> 
-</select> 
-		</form>
+			<p>
+				<select id ="sela" title="Basic example" multiple="multiple" name="example-basic" size="5">
+				<option value="V1">Option 1</option>
+				<option value="V2">Option 2</option>
+				<option value="V3">Option 3</option>
+				<option value="option4">Option 4</option>
+				<option value="option5">Option 5</option>
+				<option value="option6">Option 6</option>
+				<option value="option7">Option 7</option>
+				<option value="option8">Option 8</option>
+				<option value="option9">Option 9</option>
+				<option value="option10">Option 10</option>
+				<option value="option11">Option 11</option>
+				<option value="option12">Option 12</option>
+				</select>
+            </p>
+   </form>
 	</div>
 	
 </div>

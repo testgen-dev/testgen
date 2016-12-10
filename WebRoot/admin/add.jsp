@@ -62,23 +62,28 @@ $(function(){
 			<input type="radio" name="correct" value="C"> 3
 			<input type="radio" name="correct" value="D"> 4		
 			<br>
+			<label>选择所属职位</label>
 			<p>
-				<select id ="sela" title="Basic example" multiple="multiple" name="example-basic" size="5">
-				<option value="V1">Option 1</option>
-				<option value="V2">Option 2</option>
-				<option value="V3">Option 3</option>
-				<option value="option4">Option 4</option>
-				<option value="option5">Option 5</option>
-				<option value="option6">Option 6</option>
-				<option value="option7">Option 7</option>
-				<option value="option8">Option 8</option>
-				<option value="option9">Option 9</option>
-				<option value="option10">Option 10</option>
-				<option value="option11">Option 11</option>
-				<option value="option12">Option 12</option>
+				<select id ="position" title="position" multiple="multiple" name="position" size="5">
+				<option value="frontend">前端工程师</option>
+				<option value="backend">后端工程师</option>
+				<option value="mobileend">移动端工程师</option>
 				</select>
             </p>
-   </form>
+            <label>选择所属技术背景</label>
+            <p>
+			    <select id ="tech" title="tech" multiple="multiple" name="tech" size="5">
+					<option value="JS">JS</option>
+					<option value="HTML">HTML</option>
+					<option value="CSS">CSS</option>
+					<option value="JAVA">JAVA</option>
+					<option value="C++">C++</option>
+					<option value="Python">Python</option>
+					<option value="Android">Android</option>
+					<option value="iOS">iOS</option>
+				</select>
+            </p>
+       </form>
 	</div>
 	
 </div>

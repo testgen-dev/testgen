@@ -10,7 +10,7 @@ public class Question {
     private HashMap<Character,String> option;//问题的选项
     private int fullscore;//满分
     private int level;//分四个等级   20个题，5＊2＋5＊4＋5＊6＋5＊8＝100 ，1->2，2->4，3->6，4->8
-	private ArrayList<Integer>category;//题目所属类别，关联positionid
+	private ArrayList<Technology>category;//题目所属类别，关联positionid
     public int getQuestionid() {
 		return questionid;
 	}
@@ -47,10 +47,10 @@ public class Question {
 	public void setLevel(int level) {
 		this.level = level;
 	}
-	public ArrayList<Integer> getCategory() {
+	public ArrayList<Technology> getCategory() {
 		return category;
 	}
-	public void setCategory(ArrayList<Integer> category) {
+	public void setCategory(ArrayList<Technology> category) {
 		this.category = category;
 	}
     

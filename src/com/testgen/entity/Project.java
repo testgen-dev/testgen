@@ -1,13 +1,12 @@
 package com.testgen.entity;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 
 public class Project  {
-    private int projectid;//????????????
-    private String projectname;//????????????
-    private String projectcontent;//????????????
-    private ArrayList<Position> projectposition;//????????????
+    private int projectid;//项目id
+    private String projectname;//项目名称
+    private String projectcontent;//项目内容
+    private ArrayList<Position> projectposition;//项目需要的职位
     
 	public int getProjectid() {
 		return projectid;

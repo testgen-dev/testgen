@@ -52,7 +52,7 @@
 			        <br>
 			    </div>
 			    <div class="button">
-			        <button type="submit" class="login-btn register-btn" id="button">添加</button>
+			        <button type="submit" class="login-btn register-btn" id="button">提交</button>
 		        </div>
 		        <div>
 			        <br>

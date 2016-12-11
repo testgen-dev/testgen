@@ -23,6 +23,8 @@
 		<h1>试题录入</h1>
 	</div>
 	<div class="cont-main clearfix">
+	<div class="login form">
+			<div class="group">
 		<form action="" id="testinput">
 			<label>题目</label>
 			<input type="text" id="question" name="question">
@@ -73,7 +75,12 @@
 				</select>
             </p>
             <input type="hidden" name="time"  id="time">
+            <div class="button">
+			        <button type="submit" class="login-btn register-btn" id="button">提交</button>
+		        </div>
        </form>
+       </div>
+       </div>
 	</div>
 	
 </div>

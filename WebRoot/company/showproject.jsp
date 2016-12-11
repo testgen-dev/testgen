@@ -25,6 +25,12 @@
 
 		<div class="login form">
 			<div class="group">
+			    <table>
+			        <tr >
+			    	    <td><a href="showrecom.jsp">$公司名称1</a></td>
+			    	   
+			    	</tr>
+			    </table>
 			</div>
 		</div>
 

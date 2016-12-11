@@ -11,21 +11,10 @@
 	<link rel="stylesheet" type="text/css" href="../style/add.css">
 	<link rel="stylesheet" type="text/css" href="../js/jquery.multiselect.css" />
 	<link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/ui-lightness/jquery-ui.css" />
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.js"></script>
-
-<script type="text/javascript" src="../js/jquery.ui.core.js"></script>
-<script type="text/javascript" src="../js/jquery.ui.widget.js"></script>
-<script type="text/javascript" src="../js/jquery.multiselect.js"></script>
-<script type="text/javascript">
-$(function(){
-    $("select").multiselect({
-        noneSelectedText: "==请选择==",
-        checkAllText: "全选",
-        uncheckAllText: '全不选',
-        selectedList:4
-    });
-});
-</script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.js"></script>
+    <script type="text/javascript" src="../js/jquery.ui.core.js"></script>
+    <script type="text/javascript" src="../js/jquery.ui.widget.js"></script>
+    <script type="text/javascript" src="../js/jquery.multiselect.js"></script>
 </head>
 <body>
 <div id="box"></div>

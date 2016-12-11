@@ -19,9 +19,21 @@
 
 		<div class="login form">
 			<div class="group">
-			    <table>
-			        <td><a href='showemployee.jsp'>张三</td>
-			    </table>
+			    <div id="companypos">
+			        <lable>公司职位1</lable>
+			        <br>
+			        <td><a href='showemployee.jsp'>张三</a></span>
+			    </div>
+			     <div>
+			        <lable>公司职位2</lable>
+			        <br>
+			        <span><a href='showemployee.jsp'>李四</a></span>
+			    </div>
+			     <div>
+			        <lable>公司职位3</lable>
+			        <br>
+			        <td><a href='showemployee.jsp'>王五</a></span>
+			    </div>
 			</div>
 		</div>
 

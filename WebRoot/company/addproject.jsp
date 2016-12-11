@@ -44,14 +44,20 @@
 				<lable>项目职位</lable>	
 				<br>
 				<select id ="position" title="position" multiple="multiple" name="position" size="5">
-				<option value="frontend">前端工程师</option>
-				<option value="backend">后端工程师</option>
-				<option value="mobileend">移动端工程师</option>
+					<option value="frontend">前端工程师</option>
+					<option value="backend">后端工程师</option>
+					<option value="mobileend">移动端工程师</option>
 				</select>
-			</form>
 			    <div>
-			    <br><br><br>
+			        <br>
 			    </div>
+			    <div class="button">
+			        <button type="submit" class="login-btn register-btn" id="button">添加</button>
+		        </div>
+		        <div>
+			        <br>
+			    </div>
+			</form>
 			</div>
 		</div>
 

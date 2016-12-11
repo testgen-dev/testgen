@@ -41,7 +41,7 @@
 				<textarea type="text" id="projectintro" name="projectintro" style="height:51px;width:220px; ">
 				</textarea>
 				<br>
-				<lable>项目职位</lable>	
+				<label>项目职位</label>	
 				<br>
 				<select id ="position" title="position" multiple="multiple" name="position" size="5">
 					<option value="frontend">前端工程师</option>

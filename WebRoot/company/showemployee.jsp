@@ -10,7 +10,6 @@
 </head>
 <body>
 <div id="box"></div>
-<div class="cent-box">
 	<div class="cent-box-header">
 		<h1>展示推荐人详细信息</h1>
 	</div>
@@ -35,9 +34,9 @@
 					<label>掌握技能:</label>	
 					<br>
 					<label>Java </label>
-					<lable>C++</lable>
-					<lable>Python</lable>
-					<lable>Ruby</lable>
+					<label>C++</label>
+					<label>Python</label>
+					<label>Ruby</label>
 			</div>
 			<div><br><br><br></div>
 		</div>

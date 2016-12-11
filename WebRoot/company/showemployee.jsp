@@ -16,16 +16,30 @@
 	</div>
 
 	<div class="cont-main clearfix">
-		<div class="index-tab">
-			<div class="index-slide-nav">
-				<a href="add.jsp">添加</a>
-				<a href="register.html">更新</a>			
-			</div>
-		</div>
 
 		<div class="login form">
 			<div class="group">
+			    <div>
+				    <label>姓名:</label>
+					<br>
+					<label>张三</label>
+				</div>
+				<hr><br>
+				<div>
+					<label >电话:</label>
+					<br>
+					<label>14155151315</label>
+				</div>
+				<hr><br>
+				<div>
+					<label>掌握技能:</label>	
+					<br>
+					<label>Java </label>
+					<lable>C++</lable>
+					<lable>Python</lable>
+					<lable>Ruby</lable>
 			</div>
+			<div><br><br><br></div>
 		</div>
 
 	</div>

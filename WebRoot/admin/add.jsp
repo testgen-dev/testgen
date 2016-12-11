@@ -88,10 +88,8 @@ $(function(){
 	</div>
 	
 </div>
-
 <div class="footer">
-	<p> - Thousands Find</p>
-	<p>Designed By ZengRong  <a href="zrong.me">mycodes.net</a> 2016</p>
+	<p> 手机试题招聘平台</p>
 </div>
 
 <script src='js/particles.js' type="text/javascript"></script>

@@ -7,7 +7,14 @@
 
 	<title>登录 - 手机试题招聘平台</title>
 	<link rel="stylesheet" type="text/css" href="../style/register-login.css">
-</head>
+	<link rel="stylesheet" type="text/css" href="../style/add.css">
+	<link rel="stylesheet" type="text/css" href="../js/jquery.multiselect.css" />
+	<link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/ui-lightness/jquery-ui.css" />
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.js"></script>
+    <script type="text/javascript" src="../js/jquery.ui.core.js"></script>
+    <script type="text/javascript" src="../js/jquery.ui.widget.js"></script>
+    <script type="text/javascript" src="../js/jquery.multiselect.js"></script>
+	</head>
 <body>
 <div id="box"></div>
 <div class="cent-box">
@@ -17,16 +24,18 @@
 
 	<div class="cont-main clearfix">
 		<div class="index-tab">
-			<div class="index-slide-nav">
-				<a href="add.jsp">添加</a>
-				<a href="register.html">更新</a>			
-			</div>
+			
 		</div>
 
 		<div class="login form">
 			<div class="group">
+			    <label>您此次的答卷得分为：</label>
+			    <h2>80分</h2>
 			</div>
 		</div>
+		<div class="button">
+			        <button type="submit" class="login-btn register-btn" id="button">确定</button>
+		        </div>
 
 	</div>
 </div>

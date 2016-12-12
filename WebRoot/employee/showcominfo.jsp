@@ -25,7 +25,18 @@
 
 		<div class="login form">
 			<div class="group">
+			   <div>无人车项目</div>
+			   <hr>
+			      <div>前端工程师</div>
+			      <div><a href= "selecttech.jsp">应聘</a></div>
+			      
+			   <div>微店项目</div>
+			   <hr>
+			   <div>前端工程师</div>
+			       <div><a href="selecttech.jsp" >应聘</a></div>
+			   <br><br>
 			</div>
+			<br><br>
 		</div>
 
 	</div>

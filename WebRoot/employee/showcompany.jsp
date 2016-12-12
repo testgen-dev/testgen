@@ -16,15 +16,19 @@
 	</div>
 
 	<div class="cont-main clearfix">
-		<div class="index-tab">
-			<div class="index-slide-nav">
-				<a href="add.jsp">添加</a>
-				<a href="register.html">更新</a>			
-			</div>
-		</div>
 
 		<div class="login form">
 			<div class="group">
+			  <div><a href= "showcominfo.jsp">华为有限公司</a></div>
+			  <hr>
+			  <div><a href= "">Baidu有限公司</a></div>
+			  <hr>
+			  <div><a href= "">Tencent有限公司</a></div>
+			  <hr>
+			  <div><a href= "">Alibaba有限公司</a></div>
+			  <hr>
+			  <br>
+			  <br>
 			</div>
 		</div>
 

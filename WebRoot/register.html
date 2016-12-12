@@ -115,6 +115,26 @@
 			$(".zt").hide();
 		}
 	})
+	$("#button").click(function(){
+	    
+	    if(document.getElementById("person").checked){
+			var user={
+				usertype : "2",
+				username : document.getElementById("user").value,
+				password : document.getElementById("password").value,
+				telephone : document.getElementById("telephone").value
+			};
+			$.ajax({
+			    url:"http://112.74.62.114:8080/Entity/U1ff54ed338bfc/testgen/User/",
+			    contentType: "application/json",
+			    type: "POST",
+			    data:JSON.stringify(user),
+			    success:function(data){
+					
+			    }
+			})
+	    }
+	})
 </script>
 </body>
 </html>

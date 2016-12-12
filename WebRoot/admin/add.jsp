@@ -88,11 +88,11 @@
 	<p> 手机试题招聘平台</p>
 </div>
 
-<script src='js/particles.js' type="text/javascript"></script>
-<script src='js/background.js' type="text/javascript"></script>
-<script src='js/jquery.min.js' type="text/javascript"></script>
-<script src='js/layer/layer.js' type="text/javascript"></script>
-<script src='js/index.js' type="text/javascript"></script>
+<script src='../js/particles.js' type="text/javascript"></script>
+<script src='../js/background.js' type="text/javascript"></script>
+<<script src='../js/jquery.min.js' type="text/javascript"></script>  
+<script src='../js/layer/layer.js' type="text/javascript"></script>
+<script src='../js/index.js' type="text/javascript"></script>
 <script>
 	$("#remember-me").click(function(){
 		var n = document.getElementById("remember-me").checked;
@@ -111,16 +111,18 @@
 	    }); 
 	    }); 
 	//实体提交
-     function submit(action){
-        var correctnum = document.getElementById("testinput").correct;//正确选项
+     $("#button").click(function(){
+	    var correctnum = document.getElementById("testinput").correct;//正确选项
         var levelnum = document.getElementById("testinput").level;//题目等级
+        var correct = null;
+        var level = null;
         var question = document.getElementById("question");
         var itemA = document.getElementById("itemA");
         var itemB = document.getElementById("itemB");
         var itemC = document.getElementById("itemC");
         var itemD = document.getElementById("itemD");
+        var category = null;
         //获取多选值
-        
         for(var i=0;i<radionum.length;i++){
             if(radionum[i].checked){
                 correct = correctnum[i];
@@ -131,10 +133,26 @@
                 level = levelnum[i];
             }
         }
-        window.location.href='?action='+action+'&correct='+correct+'&level='+level
+        var ques = {"content":question,"option1":itemA,"option2":itemB,"option3":itemC,"option4":itemD,"answer":correct,"level":level,"category":category};
+      
+        /* window.location.href='?action='+action+'&correct='+correct+'&level='+level
         +'&question='+question+'&itemA='+itemA+'&itemB='+itemB+'&itemC='+itemC+'&itemD='
-        +itemD;
-     }
+        +itemD; */
+        document.write("test");
+	    $.ajax({
+			url:"http://112.74.62.114:8080/Entity/U1ff54ed338bfc/testgen/Question",
+	    	type:"POST",
+	    	contentType: "application/json",
+	    	data:JSON.stringify(ques),
+	    	error:function(){
+	    	    alert("添加试题失败");
+	    	},//错误执行方法
+	    	success:function(data){
+            alert(data);
+			} //成功执行方法
+	    });
+	    
+	});
 </script>
 </body>
 </html>

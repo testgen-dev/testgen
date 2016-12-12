@@ -3,6 +3,7 @@ package com.testgen.dto;
 import java.util.HashMap;
 
 public class Grade {
+	private int gradeid;//成绩id
     private int userid;//用户id
     private String companyname;//应聘的公司名称
     private String companyproject;//应聘的公司项目
@@ -45,5 +46,12 @@ public class Grade {
 	public void setQuestion(HashMap<Integer, Integer> question) {
 		this.question = question;
 	}
+	public int getGradeid() {
+		return gradeid;
+	}
+	public void setGradeid(int gradeid) {
+		this.gradeid = gradeid;
+	}
+	
     
 }

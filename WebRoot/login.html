@@ -55,9 +55,10 @@
 
 <script src='js/particles.js' type="text/javascript"></script>
 <script src='js/background.js' type="text/javascript"></script>
-<script src='js/jquery.min.js' type="text/javascript"></script>
+<script src='js/jquery-3.1.1.min.js' type="text/javascript"></script>
 <script src='js/layer/layer.js' type="text/javascript"></script>
 <script src='js/index.js' type="text/javascript"></script>
+<script src='js/json2.js' type="text/javascript"></script>
 <script>
 	$("#remember-me").click(function(){
 		var n = document.getElementById("remember-me").checked;
@@ -66,6 +67,24 @@
 		}else{
 			$(".zt").hide();
 		}
+	});
+	$("#button").click(function(){
+	    var username = document.getElementById("email").value;
+	    var password = document.getElementById("password").value;
+	    
+	    $.ajax({
+			url:"http://112.74.62.114:8080/Entity/U1ff54ed338bfc/testgen/User/?User.username="+username,
+	    	type:"GET",
+	    	datatype: "json",
+	    	error:function(){
+	    	    alert("mima");
+	    	},//错误执行方法
+	    	success:function(data){
+			var dataJson = JSON.parse(data);
+			alert("data=" + data + " name="+dataJson.id+"  age=" + dataJson.username); 
+	   		} //成功执行方法
+	    })
+	    
 	});
 </script>
 </body>

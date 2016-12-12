@@ -15,6 +15,10 @@
     <script type="text/javascript" src="../js/jquery.ui.core.js"></script>
     <script type="text/javascript" src="../js/jquery.ui.widget.js"></script>
     <script type="text/javascript" src="../js/jquery.multiselect.js"></script>
+	<!-- <script src='../js/particles.js' type="text/javascript"></script> -->
+	<!-- <script src='../js/background.js' type="text/javascript"></script> -->
+	<script src='../js/layer/layer.js' type="text/javascript"></script>
+	<script src='../js/index.js' type="text/javascript"></script>
 </head>
 <body>
 <div id="box"></div>
@@ -25,7 +29,7 @@
 	<div class="cont-main clearfix">
 	<div class="login form">
 			<div class="group">
-		<form action="" id="testinput">
+		<form id="testadd">
 			<label>题目</label>
 			<input type="text" id="question" name="question">
 			<br>
@@ -48,10 +52,10 @@
 			<input type="radio" name="correct" value="D"> D
 			<br>
 			<label>题目等级(4最高)</label>
-			<input type="radio" name="level" value="one"> 1
-			<input type="radio" name="level" value="two"> 2
-			<input type="radio" name="level" value="three"> 3
-			<input type="radio" name="level" value="four"> 4		
+			<input type="radio" name="level" value="1"> 1
+			<input type="radio" name="level" value="2"> 2
+			<input type="radio" name="level" value="3"> 3
+			<input type="radio" name="level" value="4"> 4		
 			<br>
 			<label>选择所属职位</label>
 			<p>
@@ -75,10 +79,10 @@
 				</select>
             </p>
             <input type="hidden" name="time"  id="time">
+         </form>
             <div class="button">
-			        <button type="submit" class="login-btn register-btn" id="button">提交</button>
-		        </div>
-       </form>
+			    <button type="submit" class="login-btn register-btn" id="button" >提交</button>
+		    </div>
        </div>
        </div>
 	</div>
@@ -88,20 +92,7 @@
 	<p> 手机试题招聘平台</p>
 </div>
 
-<script src='../js/particles.js' type="text/javascript"></script>
-<script src='../js/background.js' type="text/javascript"></script>
-<<script src='../js/jquery.min.js' type="text/javascript"></script>  
-<script src='../js/layer/layer.js' type="text/javascript"></script>
-<script src='../js/index.js' type="text/javascript"></script>
 <script>
-	$("#remember-me").click(function(){
-		var n = document.getElementById("remember-me").checked;
-		if(n){
-			$(".zt").show();
-		}else{
-			$(".zt").hide();
-		}
-	});
 	$(function(){ 
 	    $("select").multiselect({ 
 	    noneSelectedText: "==请选择==", 
@@ -111,44 +102,58 @@
 	    }); 
 	    }); 
 	//实体提交
-     $("#button").click(function(){
-	    var correctnum = document.getElementById("testinput").correct;//正确选项
-        var levelnum = document.getElementById("testinput").level;//题目等级
-        var correct = null;
-        var level = null;
-        var question = document.getElementById("question");
-        var itemA = document.getElementById("itemA");
-        var itemB = document.getElementById("itemB");
-        var itemC = document.getElementById("itemC");
-        var itemD = document.getElementById("itemD");
+      $("#button").click(function(){
+	    var correctnum = document.getElementById("testadd").correct;//正确选项
+        var levelnum = document.getElementById("testadd").level;//题目等级
+        var question = document.getElementById("question").value;
+        var itemA = document.getElementById("itemA").value;
+        var itemB = document.getElementById("itemB").value;
+        var itemC = document.getElementById("itemC").value;
+        var itemD = document.getElementById("itemD").value;
         var category = null;
-        //获取多选值
-        for(var i=0;i<radionum.length;i++){
-            if(radionum[i].checked){
-                correct = correctnum[i];
+        correct = null;
+        level = null;
+        var pos = $('#position :selected');
+        var tec = $('#tech :selected');
+            pos.each(function () {
+                if(category == null){
+                    category = $(this).html();
+                }
+                else {
+                    category = category+","+$(this).html();
+                }
+            }); 
+            tec.each(function () {
+                  if(category == null){
+                      alert("请填写该题所属职位");
+                  }
+                  else{
+                      category = category+","+$(this).html();
+                  }
+            });
+              //获取多选值
+        for(var i=0;i<correctnum.length;i++){
+            if(correctnum[i].checked){
+                correct = correctnum[i].value;
             }
         }
-        for(var j=0;i<levelnum.length;j++){
-            if(radionum[j].checked){
-                level = levelnum[i];
+        for(var j=0;j<levelnum.length;j++){
+            if(levelnum[j].checked){
+                level = levelnum[j].value;
             }
         }
-        var ques = {content:""+question,
-                    option1:""+itemA,
-                    option2:""+itemB,
-                    option3:""+itemC,
-                    option4:""+itemD,
-                    answer:""+correct,
-                    level:level,
-                    category:""+category
+        var ques = {    
+                    content:question,
+                    option1:itemA,
+                    option2:itemB,
+                    option3:itemC,
+                    option4:itemD,
+                    answer:correct,
+                    level:parseInt(level),
+                    category:category
                     };
-      
-        /* window.location.href='?action='+action+'&correct='+correct+'&level='+level
-        +'&question='+question+'&itemA='+itemA+'&itemB='+itemB+'&itemC='+itemC+'&itemD='
-        +itemD; */
-        document.write("test");
 	    $.ajax({
-			url:"http://112.74.62.114:8080/Entity/U1ff54ed338bfc/testgen/Question",
+			url:"http://112.74.62.114:8080/Entity/U1ff54ed338bfc/testgen/Question/",
 	    	type:"POST",
 	    	contentType: "application/json",
 	    	data:JSON.stringify(ques),
@@ -156,11 +161,12 @@
 	    	    alert("添加试题失败");
 	    	},//错误执行方法
 	    	success:function(data){
-                alert(data);
+                alert("添加试题成功");
+                window.location.href = "admin.jsp";
 			} //成功执行方法
 	    });
 	    
-	});
+	}); 
 </script>
 </body>
 </html>

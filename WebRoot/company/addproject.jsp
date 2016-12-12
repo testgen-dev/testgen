@@ -13,6 +13,10 @@
     <script type="text/javascript" src="../js/jquery.ui.core.js"></script>
     <script type="text/javascript" src="../js/jquery.ui.widget.js"></script>
     <script type="text/javascript" src="../js/jquery.multiselect.js"></script>
+    <script src='../js/particles.js' type="text/javascript"></script>
+    <script src='../js/background.js' type="text/javascript"></script>
+    <script src='../js/layer/layer.js' type="text/javascript"></script>
+    <script src='../js/index.js' type="text/javascript"></script>
 </head>
 <body>
 <div id="box"></div>
@@ -68,11 +72,7 @@
 	<p> 手机试题招聘平台</p>
 </div>
 
-<script src='js/particles.js' type="text/javascript"></script>
-<script src='js/background.js' type="text/javascript"></script>
-<script src='js/jquery.min.js' type="text/javascript"></script>
-<script src='js/layer/layer.js' type="text/javascript"></script>
-<script src='js/index.js' type="text/javascript"></script>
+
 <script>
 	$("#remember-me").click(function(){
 		var n = document.getElementById("remember-me").checked;

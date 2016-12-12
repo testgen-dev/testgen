@@ -133,7 +133,15 @@
                 level = levelnum[i];
             }
         }
-        var ques = {"content":question,"option1":itemA,"option2":itemB,"option3":itemC,"option4":itemD,"answer":correct,"level":level,"category":category};
+        var ques = {content:""+question,
+                    option1:""+itemA,
+                    option2:""+itemB,
+                    option3:""+itemC,
+                    option4:""+itemD,
+                    answer:""+correct,
+                    level:level,
+                    category:""+category
+                    };
       
         /* window.location.href='?action='+action+'&correct='+correct+'&level='+level
         +'&question='+question+'&itemA='+itemA+'&itemB='+itemB+'&itemC='+itemC+'&itemD='
@@ -148,7 +156,7 @@
 	    	    alert("添加试题失败");
 	    	},//错误执行方法
 	    	success:function(data){
-            alert(data);
+                alert(data);
 			} //成功执行方法
 	    });
 	    

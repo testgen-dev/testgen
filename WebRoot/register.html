@@ -85,7 +85,7 @@
 			document.getElementById("eAddress").setAttribute("type", "hidden");
 	    }
 	}
-	$(".login-btn").click(function(){
+/* 	$(".login-btn").click(function(){
 		var email = $("#email").val();
 		var password = $("#password").val();
 		var verify = $("#verify").val();
@@ -106,7 +106,7 @@
 		// }
 		// })
 
-	})
+	}) */
 	$("#remember-me").click(function(){
 		var n = document.getElementById("remember-me").checked;
 		if(n){
@@ -130,9 +130,42 @@
 			    type: "POST",
 			    data:JSON.stringify(user),
 			    success:function(data){
-					
+					 window.location.href = 'http://localhost:8080/testgen/login.html'; 
 			    }
 			})
+	    }
+	    else if(document.getElementById("enterprise").checked){
+			var user={
+				usertype : "1",
+				username : document.getElementById("user").value,
+				password : document.getElementById("password").value,
+				telephone : document.getElementById("telephone").value
+			};
+			
+			$.ajax({
+			    url:"http://112.74.62.114:8080/Entity/U1ff54ed338bfc/testgen/User/",
+			    contentType: "application/json",
+			    type: "POST",
+			    data:JSON.stringify(user),
+			    success:function(data){
+					var company = {
+						companyname : document.getElementById("eName").value,
+						companyaddress : document.getElementById("eAddress").value,
+						userid : data.id
+					};
+					
+					$.ajax({
+					    url:"http://112.74.62.114:8080/Entity/U1ff54ed338bfc/testgen/Company/",
+					    contentType: "application/json",
+					    type: "POST",
+					    data:JSON.stringify(company),
+					    success:function(data){
+							window.location.href = 'http://localhost:8080/testgen/login.html';
+					    }
+					})
+			    }
+			})
+		
 	    }
 	})
 </script>

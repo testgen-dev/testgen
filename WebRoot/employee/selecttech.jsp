@@ -49,7 +49,7 @@
             
 			   <br><br>
 			   <div class="button">
-			        <button type="submit" class="login-btn register-btn" id="begin" onclick="testgen()">开始考试</button>
+			        <button type="submit" class="login-btn register-btn" id="button" onclick="testgen()">开始考试</button>
 		        </div>
 			    </form>
 			</div>

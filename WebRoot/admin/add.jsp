@@ -10,8 +10,8 @@
 	<link rel="stylesheet" type="text/css" href="../style/register-login.css">
 	<link rel="stylesheet" type="text/css" href="../style/add.css">
 	<link rel="stylesheet" type="text/css" href="../js/jquery.multiselect.css" />
-	<link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/ui-lightness/jquery-ui.css" />
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.js"></script>
+	<link rel="stylesheet" type="text/css" href="../style/jquery-ui.css" />
+    <script type="text/javascript" src="../js/jquery.js"></script>
     <script type="text/javascript" src="../js/jquery.ui.core.js"></script>
     <script type="text/javascript" src="../js/jquery.ui.widget.js"></script>
     <script type="text/javascript" src="../js/jquery.multiselect.js"></script>

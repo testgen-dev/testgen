@@ -9,8 +9,8 @@
 	<link rel="stylesheet" type="text/css" href="../style/register-login.css">
 	<link rel="stylesheet" type="text/css" href="../style/add.css">
 	<link rel="stylesheet" type="text/css" href="../js/jquery.multiselect.css" />
-	<link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/ui-lightness/jquery-ui.css" />
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.js"></script>
+	<link rel="stylesheet" type="text/css" href="../style/jquery-ui.css" />
+    <script type="text/javascript" src="../js/jquery.js"></script>
     <script type="text/javascript" src="../js/jquery.ui.core.js"></script>
     <script type="text/javascript" src="../js/jquery.ui.widget.js"></script>
     <script type="text/javascript" src="../js/jquery.multiselect.js"></script>
@@ -32,18 +32,18 @@
 		    	alert(dt);
 		    	var positions= new Array(); 
 		    	positions = dt.split(",");
+		    	console.log(positions);
 		    	var pos = null;
-	    	    for (var i= 0;i<positions.length;i++){
-	    	        
+	    	    for (var i= 1;i<positions.length+1;i++){
+	    	        console.log(i+" "+positions[i-1]);
 	    	        if (pos == null){
-	    	            pos = i+"&nbsp;&nbsp; <a href='showemployee.jsp>"+positions[i]+"</a></br><hr>";
+	    	            pos = i+"&nbsp;&nbsp; <a href='showemployee.jsp>"+positions[i-1]+"</a><br><hr><hr>";
 	    	        }
 	    	        else{
-	    	            pos = pos +" "+i+"&nbsp;&nbsp;&nbsp;<a href='showemployee.jsp>"+positions[i]+"</a></br><hr>";
+	    	            pos = pos +" "+i+"&nbsp;&nbsp;&nbsp;<a href='showemployee.jsp>"+positions[i-1]+"</a><br><hr>";
 	    	        }
-	    	        $("#test").html(pos);
 	    	    }
-	    	    
+	    	        $("#test").html(pos);
 	    	  alert("获取公司项目职位成功");
 	    	  console.log(dt);
 			} //成功执行方法
@@ -62,21 +62,6 @@
 
 		<div class="login form">
 			<div class="group">
-			    <div id="companypos">
-			        <label>公司职位1</label>
-			        <br>
-			        <label><a href='showemployee.jsp'>张三</a></label>
-			    </div>
-			     <div>
-			        <label>公司职位2</label>
-			        <br>
-			        <span><a href='showemployee.jsp'>李四</a></span>
-			    </div>
-			     <div>
-			        <label>公司职位3</label>
-			        <br>
-			        <label><a href='showemployee.jsp'>王五</a></label>
-			    </div>
 			     <div id="test"> </div>
 			</div>
 		</div>

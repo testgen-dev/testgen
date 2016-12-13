@@ -16,18 +16,17 @@
     <script type="text/javascript" src="../js/jquery.multiselect.js"></script>
     <script src='../js/layer/layer.js' type="text/javascript"></script>
     <script>
-     var pid=window.location.search.slice(window.location.search.lastIndexOf("?")+1);
-     var id = parseInt(pid);
-     alert(pid);
+     var id=window.location.search.slice(window.location.search.lastIndexOf("?")+4);
+     console.log(id);
        $.ajax({
 			url:"http://112.74.62.114:8080/Entity/U1ff54ed338bfc/testgen/Projectx/?Projectx.id="+id,
 	    	type:"GET",
 	    	contentType: "application/json",
 	    	error:function(){
 	    	    alert("获取公司项目职位失败");
-	    	    
 	    	},//错误执行方法
 	    	success:function(data){
+	    	    console.log(data);
 	    	    alert(data);
 		    	var dt = data.Projectx[0].projectposition;
 		    	alert(dt);

@@ -73,6 +73,7 @@
 
 
 <script>
+    var userid = document.cookie.replace(/(?:(?:^|.*;\s*)userid\s*\=\s*([^;]*).*$)|^.*$/, "$1");
 	$(function(){ 
 	    $("select").multiselect({ 
 	    noneSelectedText: "==请选择==", 
@@ -95,12 +96,14 @@
                     alert(projectposition);
                 }
             });  
+       
+        alert(userid);
         var project = {    
                     projectname:projectname,
                     projectcontent:projectintro,
-                    projectposition:projectposition
+                    projectposition:projectposition,
+                    userid:userid
                     };
-             console.log(project);
 	    $.ajax({
 			url:"http://112.74.62.114:8080/Entity/U1ff54ed338bfc/testgen/Projectx/",
 	    	type:"POST",
@@ -111,7 +114,7 @@
 	    	},//错误执行方法
 	    	success:function(data){
                 alert("添加项目成功");
-           //     window.location.href = "showproject.jsp";
+                window.location.href = "showproject.jsp";
 			} //成功执行方法
 	    });
 	    

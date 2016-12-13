@@ -17,9 +17,9 @@
     <script src='../js/layer/layer.js' type="text/javascript"></script>
     <script>
          //var userid=window.location.search.slice(window.location.search.lastIndexOf("?")+1);
-         var userid = sessionStorage.getItem("userid");
+         var userid = document.cookie.replace(/(?:(?:^|.*;\s*)userid\s*\=\s*([^;]*).*$)|^.*$/, "$1");
          $.ajax({
-					url:"http://112.74.62.114:8080/Entity/U1ff54ed338bfc/testgen/Projectx/",
+					url:"http://112.74.62.114:8080/Entity/U1ff54ed338bfc/testgen/Projectx/?Projectx.userid="+userid,
 			    	type:"GET",
 			    	contentType: "application/json",
 			    	error:function(){

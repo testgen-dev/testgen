@@ -83,23 +83,32 @@
 	    	    if(jQuery.isEmptyObject(data))
 	    			alert("用户名错误");
 	    	    else if(data.User[0].password==password)
-	    		{
+	    		{   
+	    	    	/* if(window.SessionStorage){     alert("浏览支持SessionStorage") }else{    alert("浏览暂不支持SessionStorage") }
 	    	    	sessionStorage.setItem("username", data.User[0].username);
 	    	    	sessionStorage.setItem("password",data.User[0].password);
-	    	    	sessionStorage.setItem("userid",data.User[0].userid);
-	    	    	/* //获取当前时间 
+	    	    	sessionStorage.setItem("userid",data.User[0].userid);  */
+	    	        //获取当前时间 
 	    	    	var date=new Date(); 
 	    	    	var expiresDays=10; 
 	    	    	//将date设置为10天以后的时间 
 	    	    	date.setTime(date.getTime()+expiresDays*24*3600*1000); 
 	    	    	//将userId和userName两个cookie设置为10天后过期 
-	    	    	document.cookie="userid="+data.User[0].id; userName=hulk; expires="+date.toGMTString();  */
+	    	    	document.cookie="userid="+data.User[0].id; 
+	    	    	document.cookie="username="+data.User[0].username;
+	    	    	document.cookie="password="+data.User[0].password;
+	    	    	document.cookie="expires="+date.toGMTString();
+	    	    	var uid = document.cookie.replace(/(?:(?:^|.*;\s*)userid\s*\=\s*([^;]*).*$)|^.*$/, "$1");
+	    	    	var uname = document.cookie.replace(/(?:(?:^|.*;\s*)username\s*\=\s*([^;]*).*$)|^.*$/, "$1");
+	    	    	var upass = document.cookie.replace(/(?:(?:^|.*;\s*)password\s*\=\s*([^;]*).*$)|^.*$/, "$1");
+	    	    	var expires = document.cookie.replace(/(?:(?:^|.*;\s*)expires\s*\=\s*([^;]*).*$)|^.*$/, "$1");
+	    	    
 					switch (data.User[0].usertype) {
 					case "0":
 					    window.location.href = 'http://localhost:8080/testgen/admin/admin.jsp';
 					    break;
 					case "1":
-					    window.location.href = "http://localhost:8080/testgen/company/showproject.jsp?userid="+data.User[0].id;
+					    window.location.href = "http://localhost:8080/testgen/company/showproject.jsp";
 					    break;
 					case "2":
 					    window.location.href = 'http://localhost:8080/testgen/employee/showcompany.jsp';

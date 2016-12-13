@@ -16,28 +16,30 @@
     <script type="text/javascript" src="../js/jquery.multiselect.js"></script>
     <script src='../js/layer/layer.js' type="text/javascript"></script>
     <script>
+         //var userid=window.location.search.slice(window.location.search.lastIndexOf("?")+1);
+         var userid = sessionStorage.getItem("userid");
          $.ajax({
-						url:"http://112.74.62.114:8080/Entity/U1ff54ed338bfc/testgen/Projectx/",
-				    	type:"GET",
-				    	contentType: "application/json",
-				    	error:function(){
-				    	    alert("获取试题失败");
-				    	},//错误执行方法
-				    	success:function(data){
-				    	    var len = data.Projectx.length;
-				    	    var proj = null;
-				    	    for(var i=0 ;i<len; i++){
-				    	        var dtlist = data.Projectx[i];
-				    	        if (proj == null){
-				    	            proj = i+"&nbsp;&nbsp; <a href='showemployee.jsp?id="+dtlist.id+"'>"+dtlist.projectname+"</a>&nbsp;&nbsp;"+"</br><hr>";
-				    	        }
-				    	        else{
-				    	            proj = proj +" "+i+"&nbsp;&nbsp;&nbsp;<a href='showemployee.jsp?id="+dtlist.id+"'>"+dtlist.projectname+"</a>&nbsp;&nbsp;"+"</br><hr>";
-				    	        }
-				    	        $("#test").html(proj);
-			                }
-						} //成功执行方法
-				    });
+					url:"http://112.74.62.114:8080/Entity/U1ff54ed338bfc/testgen/Projectx/",
+			    	type:"GET",
+			    	contentType: "application/json",
+			    	error:function(){
+			    	    alert("获取公司项目失败");
+			    	},//错误执行方法
+			    	success:function(data){
+			    	    var len = data.Projectx.length;
+			    	    var proj = null;
+			    	    for(var i=0 ;i<len; i++){
+			    	        var dtlist = data.Projectx[i];
+			    	        if (proj == null){
+			    	            proj = i+"&nbsp;&nbsp; <a href='showrecom.jsp?id="+dtlist.id+"'>"+dtlist.projectname+"</a>&nbsp;&nbsp;"+"</br><hr>";
+			    	        }
+			    	        else{
+			    	            proj = proj +" "+i+"&nbsp;&nbsp;&nbsp;<a href='showrecom.jsp?id="+dtlist.id+"'>"+dtlist.projectname+"</a>&nbsp;&nbsp;"+"</br><hr>";
+			    	        }
+			    	        $("#test").html(proj);
+		                }
+					} //成功执行方法
+			    });
     </script>
 </head>
 <body>

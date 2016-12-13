@@ -15,6 +15,42 @@
     <script type="text/javascript" src="../js/jquery.ui.widget.js"></script>
     <script type="text/javascript" src="../js/jquery.multiselect.js"></script>
     <script src='../js/layer/layer.js' type="text/javascript"></script>
+    <script>
+     var pid=window.location.search.slice(window.location.search.lastIndexOf("?")+1);
+     var id = parseInt(pid);
+     alert(pid);
+       $.ajax({
+			url:"http://112.74.62.114:8080/Entity/U1ff54ed338bfc/testgen/Projectx/?Projectx.id="+id,
+	    	type:"GET",
+	    	contentType: "application/json",
+	    	error:function(){
+	    	    alert("获取公司项目职位失败");
+	    	    
+	    	},//错误执行方法
+	    	success:function(data){
+	    	    alert(data);
+		    	var dt = data.Projectx[0].projectposition;
+		    	alert(dt);
+		    	var positions= new Array(); 
+		    	positions = dt.split(",");
+		    	var pos = null;
+	    	    for (var i= 0;i<positions.length;i++){
+	    	        
+	    	        if (pos == null){
+	    	            pos = i+"&nbsp;&nbsp; <a href='showemployee.jsp>"+positions[i]+"</a></br><hr>";
+	    	        }
+	    	        else{
+	    	            pos = pos +" "+i+"&nbsp;&nbsp;&nbsp;<a href='showemployee.jsp>"+positions[i]+"</a></br><hr>";
+	    	        }
+	    	        $("#test").html(pos);
+	    	    }
+	    	    
+	    	  alert("获取公司项目职位成功");
+	    	  console.log(dt);
+			} //成功执行方法
+	    });
+</script>
+    
 </head>
 <body>
 <div id="box"></div>
@@ -42,6 +78,7 @@
 			        <br>
 			        <label><a href='showemployee.jsp'>王五</a></label>
 			    </div>
+			     <div id="test"> </div>
 			</div>
 		</div>
 
@@ -52,20 +89,5 @@
 	<p> 手机试题招聘平台</p>
 </div>
 
-<script src='js/particles.js' type="text/javascript"></script>
-<script src='js/background.js' type="text/javascript"></script>
-<script src='js/jquery.min.js' type="text/javascript"></script>
-<script src='js/layer/layer.js' type="text/javascript"></script>
-<script src='js/index.js' type="text/javascript"></script>
-<script>
-	$("#remember-me").click(function(){
-		var n = document.getElementById("remember-me").checked;
-		if(n){
-			$(".zt").show();
-		}else{
-			$(".zt").hide();
-		}
-	});
-</script>
 </body>
 </html>

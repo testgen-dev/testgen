@@ -37,11 +37,11 @@
 	    	    for (var i= 1;i<positions.length+1;i++){
 	    	        console.log(i+" "+positions[i-1]);
 	    	        if (pos == null){
-	    	            pos = i+"&nbsp;&nbsp; <a href='showemployee.jsp>"+positions[i-1]+"</a><hr>";
+	    	            pos = i+"&nbsp;&nbsp; <span>"+positions[i-1]+"</span><hr>";
 	    	            searchGrade(pos);
 	    	        }
 	    	        else{
-	    	            pos = pos +" "+i+"&nbsp;&nbsp;&nbsp;<a href='showemployee.jsp>"+positions[i-1]+"</a><hr>";
+	    	            pos = pos +" "+i+"&nbsp;&nbsp;&nbsp;<span>"+positions[i-1]+"</span><hr>";
 	    	            searchGrade(pos);
 	    	        }
 	    	    }
@@ -55,13 +55,14 @@
 			    	     },
 			    	     success:function(data){
 			    	         var employee = data.Grade[0].username;
+			    	         var employeeids = data.Grade[0].employeeid;
 			    	         var num = null;
-			    	         for(var j=0;j<employee.length;j++){
+			    	         for(var j=0,k=0;j<employee.length,k<employeeids.length;j++,k++){
 			    	             if(num < employee.length-1){
-			    	                 pos = pos +" "+employee[i]+" ";
+			    	                 pos = pos +"<a href='showemployee.jsp?employeeid="+employeeids[k]+">'"+employee[j]+"</a>&nbsp;&nbsp;";
 			    	             }
 			    	             else if(num == (employee.length-1)){
-			    	                 pos = pos +""+employee[i]+"br";
+			    	                 pos = pos +"<a href='showemployee.jsp?employeeid="+employeeids[k]+">'"+employee[j]+"</a><br>";
 			    	             }
 			    	         }
 			    	     }

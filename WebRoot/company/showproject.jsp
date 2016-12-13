@@ -15,7 +15,30 @@
     <script type="text/javascript" src="../js/jquery.ui.widget.js"></script>
     <script type="text/javascript" src="../js/jquery.multiselect.js"></script>
     <script src='../js/layer/layer.js' type="text/javascript"></script>
-    <script src='../js/index.js' type="text/javascript"></script>
+    <script>
+         $.ajax({
+						url:"http://112.74.62.114:8080/Entity/U1ff54ed338bfc/testgen/Projectx/",
+				    	type:"GET",
+				    	contentType: "application/json",
+				    	error:function(){
+				    	    alert("获取试题失败");
+				    	},//错误执行方法
+				    	success:function(data){
+				    	    var len = data.Projectx.length;
+				    	    var proj = null;
+				    	    for(var i=0 ;i<len; i++){
+				    	        var dtlist = data.Projectx[i];
+				    	        if (proj == null){
+				    	            proj = i+"&nbsp;&nbsp; <a href='showemployee.jsp?id="+dtlist.id+"'>"+dtlist.projectname+"</a>&nbsp;&nbsp;"+"</br><hr>";
+				    	        }
+				    	        else{
+				    	            proj = proj +" "+i+"&nbsp;&nbsp;&nbsp;<a href='showemployee.jsp?id="+dtlist.id+"'>"+dtlist.projectname+"</a>&nbsp;&nbsp;"+"</br><hr>";
+				    	        }
+				    	        $("#test").html(proj);
+			                }
+						} //成功执行方法
+				    });
+    </script>
 </head>
 <body>
 <div id="box"></div>
@@ -34,15 +57,10 @@
 
 		<div class="login form">
 			<div class="group">
-			    <table>
-			        <tr >
-			    	    <td><a href="showrecom.jsp">$公司名称1</a></td>
-			    	    <script>
-			    	         
-			    	    </script>
-			    	   
-			    	</tr>
-			    </table>
+			    <table id="tbitem">
+					 <tr><td>公司的所有项目</td></tr>
+				</table>
+			    <div id="test"></div>
 			</div>
 		</div>
 
@@ -53,20 +71,5 @@
 	<p> 手机试题招聘平台</p>
 </div>
 
-<script src='js/particles.js' type="text/javascript"></script>
-<script src='js/background.js' type="text/javascript"></script>
-<script src='js/jquery.min.js' type="text/javascript"></script>
-<script src='js/layer/layer.js' type="text/javascript"></script>
-<script src='js/index.js' type="text/javascript"></script>
-<script>
-	$("#remember-me").click(function(){
-		var n = document.getElementById("remember-me").checked;
-		if(n){
-			$(".zt").show();
-		}else{
-			$(".zt").hide();
-		}
-	});
-</script>
 </body>
 </html>

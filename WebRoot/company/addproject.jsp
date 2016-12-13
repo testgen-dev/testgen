@@ -13,10 +13,7 @@
     <script type="text/javascript" src="../js/jquery.ui.core.js"></script>
     <script type="text/javascript" src="../js/jquery.ui.widget.js"></script>
     <script type="text/javascript" src="../js/jquery.multiselect.js"></script>
-    <script src='../js/particles.js' type="text/javascript"></script>
-    <script src='../js/background.js' type="text/javascript"></script>
     <script src='../js/layer/layer.js' type="text/javascript"></script>
-    <script src='../js/index.js' type="text/javascript"></script>
 </head>
 <body>
 <div id="box"></div>
@@ -35,7 +32,7 @@
 
 		<div class="login form">
 			<div class="group">
-			<form>
+			<form id="project">
 				<label>项目名称</label>
 				<br>
 				<input type="text" id="projectname" name="projectname" style="width:220px; ">
@@ -47,11 +44,14 @@
 				<br>
 				<label>项目职位</label>	
 				<br>
-				<select id ="position" title="position" multiple="multiple" name="position" size="5">
-					<option value="frontend">前端工程师</option>
-					<option value="backend">后端工程师</option>
-					<option value="mobileend">移动端工程师</option>
-				</select>
+				<p>
+					<select id ="position" title="position" multiple="multiple" name="position" size="5">
+						<option value="frontend">前端工程师</option>
+						<option value="backend">后端工程师</option>
+						<option value="mobileend">移动端工程师</option>
+					</select>
+				</p>
+			</form>
 			    <div>
 			        <br>
 			    </div>
@@ -61,7 +61,6 @@
 		        <div>
 			        <br>
 			    </div>
-			</form>
 			</div>
 		</div>
 
@@ -74,14 +73,6 @@
 
 
 <script>
-	$("#remember-me").click(function(){
-		var n = document.getElementById("remember-me").checked;
-		if(n){
-			$(".zt").show();
-		}else{
-			$(".zt").hide();
-		}
-	});
 	$(function(){ 
 	    $("select").multiselect({ 
 	    noneSelectedText: "==请选择==", 
@@ -89,7 +80,42 @@
 	    uncheckAllText: '全不选', 
 	    selectedList:4 
 	    }); 
-	    }); 
+	    });
+	 $("#button").click(function(){
+        var projectname = document.getElementById("projectname").value;
+        var projectintro = document.getElementById("projectintro").value;
+        var projectposition = null;
+        var pos = $('#position :selected');
+            pos.each(function () {
+                if(projectposition == null){
+                    projectposition = $(this).html();
+                }
+                else {
+                    projectposition = projectposition+","+$(this).html();
+                    alert(projectposition);
+                }
+            });  
+        var project = {    
+                    projectname:projectname,
+                    projectcontent:projectintro,
+                    projectposition:projectposition
+                    };
+             console.log(project);
+	    $.ajax({
+			url:"http://112.74.62.114:8080/Entity/U1ff54ed338bfc/testgen/Projectx/",
+	    	type:"POST",
+	    	contentType: "application/json",
+	    	data:JSON.stringify(project),
+	    	error:function(){
+	    	    alert("添加试题失败");
+	    	},//错误执行方法
+	    	success:function(data){
+                alert("添加项目成功");
+           //     window.location.href = "showproject.jsp";
+			} //成功执行方法
+	    });
+	    
+	}); 
 </script>
 </body>
 </html>

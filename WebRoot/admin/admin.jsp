@@ -17,7 +17,6 @@
 	<!-- <script src='../js/particles.js' type="text/javascript"></script> -->
 	<!-- <script src='../js/background.js' type="text/javascript"></script> -->
 	<script src='../js/layer/layer.js' type="text/javascript"></script>
-	<script src='../js/index.js' type="text/javascript"></script>
 	<script>
 			        $.ajax({
 						url:"http://112.74.62.114:8080/Entity/U1ff54ed338bfc/testgen/Question/",
@@ -62,6 +61,7 @@
 			<div class="group">
 			    <span>编号</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>试题</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>答案</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>等级</span><hr>
 			    <div id="test"> </div>
+			    <br><br>
 			</div>
 		</div>
 

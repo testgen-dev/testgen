@@ -15,6 +15,25 @@
     <script type="text/javascript" src="../js/jquery.ui.widget.js"></script>
     <script type="text/javascript" src="../js/jquery.multiselect.js"></script>
     <script src='../js/layer/layer.js' type="text/javascript"></script>
+    <script>
+        var employeeid=window.location.search.slice(window.location.search.lastIndexOf("?")+12);
+        $.ajax({
+        url:"http://112.74.62.114:8080/Entity/U1ff54ed338bfc/testgen/Employee/?Employee.userid="+employeeid,
+        type:"GET",
+        contentType:"application/json",
+        error:function(){
+            alert("获取应聘者信息出错");
+        },
+        success:function(data){
+            var uname = data.Employee[0].username;
+            var utel = data.Employee[0].telephone;
+            var tech = data.Employee[0].tech;
+            $("#name").html(uname);
+            $("#tel").html(utel);
+            $("#tech").html(tech);
+        }
+        });
+    </script>
 </head>
 <body>
 <div id="box"></div>
@@ -29,22 +48,19 @@
 			    <div>
 				    <label>姓名:</label>
 					<br>
-					<label>张三</label>
+					<div id="name"></div>
 				</div>
 				<hr><br>
 				<div>
 					<label >电话:</label>
 					<br>
-					<label>14155151315</label>
+					<div id="tel"></div>
 				</div>
 				<hr><br>
 				<div>
 					<label>掌握技能:</label>	
 					<br>
-					<label>Java </label>
-					<label>C++</label>
-					<label>Python</label>
-					<label>Ruby</label>
+					<div id="tech"></div>
 			</div>
 			<div><br><br><br></div>
 		</div>

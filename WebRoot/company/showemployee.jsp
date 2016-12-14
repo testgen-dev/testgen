@@ -18,16 +18,16 @@
     <script>
         var employeeid=window.location.search.slice(window.location.search.lastIndexOf("?")+12);
         $.ajax({
-        url:"http://112.74.62.114:8080/Entity/U1ff54ed338bfc/testgen/Employee/?Employee.userid="+employeeid,
+        url:"http://112.74.62.114:8080/Entity/U1ff54ed338bfc/testgen/Employee/?Employee.employeeid="+employeeid,
         type:"GET",
         contentType:"application/json",
         error:function(){
             alert("获取应聘者信息出错");
         },
         success:function(data){
-            var uname = data.Employee[0].username;
-            var utel = data.Employee[0].telephone;
-            var tech = data.Employee[0].tech;
+            var uname = data.Employee[0].employeename;
+            var utel = data.Employee[0].employeetel;
+            var tech = data.Employee[0].employeetech;
             $("#name").html(uname);
             $("#tel").html(utel);
             $("#tech").html(tech);

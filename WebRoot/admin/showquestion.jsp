@@ -31,15 +31,33 @@
 				    	    for(var i=0 ;i<len; i++){
 				    	        var dtlist = data.Question[i];
 				    	        if (ques == null){
-				    	            ques = i+"&nbsp;&nbsp;" + dtlist.content+"&nbsp;&nbsp;"+dtlist.answer+"&nbsp;&nbsp;"+dtlist.level+"</br><hr>";
+				    	            ques = i+"&nbsp;&nbsp;" + dtlist.content+"&nbsp;&nbsp;"+dtlist.answer+"&nbsp;&nbsp;"+dtlist.level+"&nbsp;&nbsp;&nbsp;<button id="+dtlist.id+" onClick='delQuestion(this.id)'>删除</button></br><hr>";
+					    	        
 				    	        }
 				    	        else{
-				    	            ques = ques +" "+i+" "+dtlist.content+"&nbsp;&nbsp;"+dtlist.answer+"&nbsp;&nbsp;"+dtlist.level+"</br><hr>";
+				    	            ques = ques +" "+i+" "+dtlist.content+"&nbsp;&nbsp;"+dtlist.answer+"&nbsp;&nbsp;"+dtlist.level+"&nbsp;&nbsp;&nbsp;<button id="+dtlist.id+" onClick='delQuestion(this.id)'>删除</button></br><hr>";
+				    	            
 				    	        }
 				    	        $("#test").html(ques);
 			                }
 						} //成功执行方法
 				    });
+				    function delQuestion(qid){
+							            $.ajax({
+								            async: false,
+											url:"http://112.74.62.114:8080/Entity/U1ff54ed338bfc/testgen/Question/?Question.id="+qid,
+									    	type:"PUT",
+									    	contentType: "application/json",
+									    	error:function(){
+									    	    alert("删除试题失败");
+									    	},
+									    	success:function(data){
+									    	    console.log(data);
+									    	    alert("修改成功");
+									    	}
+									    	
+								    	});
+				                    }
 			    </script>
 </head>
 <body>

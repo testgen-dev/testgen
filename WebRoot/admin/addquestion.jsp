@@ -109,6 +109,8 @@
         var itemC = document.getElementById("itemC").value;
         var itemD = document.getElementById("itemD").value;
         var time = new Date().getTime();
+        alert(time);
+        console.log(time);
         var category = null;
         correct = null;
         level = null;

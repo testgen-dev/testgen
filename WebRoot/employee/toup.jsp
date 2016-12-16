@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE HTML>
 <html lang="en-US">
 <head>
@@ -11,7 +13,28 @@
 	<link rel="stylesheet" href="../swiper/swiper.min.css">
 	<script src="../js/jquery-1.11.3.js"></script>
 	<script src="../js/fontSize.js"></script>
+	<link rel="stylesheet" type="text/css" href="../style/register-login.css">
+	<link rel="stylesheet" type="text/css" href="../style/add.css">
+	<link rel="stylesheet" type="text/css" href="../js/jquery.multiselect.css" />
+	<link rel="stylesheet" type="text/css" href="../style/jquery-ui.css" />
+    <script type="text/javascript" src="../js/jquery.js"></script>
+    <script type="text/javascript" src="../js/jquery.ui.core.js"></script>
+    <script type="text/javascript" src="../js/jquery.ui.widget.js"></script>
+    <script type="text/javascript" src="../js/jquery.multiselect.js"></script>
+    <script src='../js/layer/layer.js' type="text/javascript"></script>
 	<title>在线答题</title>
+	<script>
+	    $.ajax({
+	       url:"/testgen/exam",
+	       contentType:"application/json",
+	       error:function(){
+	          alert("获取试题出错");
+	       },
+	       success:function(data){
+	          
+	       }
+	    });
+	</script>
 </head>
 <body>
 	<section class="toup"  id="t1">

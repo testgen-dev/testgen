@@ -70,7 +70,7 @@
 	<div class="cont-main clearfix">
 		<div class="index-tab">
 			<div class="index-slide-nav">
-				<a href="add.jsp">添加</a>
+				<a href="addquestion.jsp">添加</a>
 				<a href="#">更新</a>			
 			</div>
 		</div>

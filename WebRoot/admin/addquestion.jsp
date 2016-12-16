@@ -77,7 +77,6 @@
 					<option value="iOS">iOS</option>
 				</select>
             </p>
-            <input type="hidden" name="time"  id="time">
          </form>
             <div class="button">
 			    <button type="submit" class="login-btn register-btn" id="button" >提交</button>
@@ -109,6 +108,7 @@
         var itemB = document.getElementById("itemB").value;
         var itemC = document.getElementById("itemC").value;
         var itemD = document.getElementById("itemD").value;
+        var time = new Date().getTime();
         var category = null;
         correct = null;
         level = null;
@@ -149,7 +149,8 @@
                     option4:itemD,
                     answer:correct,
                     level:parseInt(level),
-                    category:category
+                    category:category,
+                    time:time
                     };
 	    $.ajax({
 			url:"http://112.74.62.114:8080/Entity/U1ff54ed338bfc/testgen/Question/",
@@ -161,7 +162,7 @@
 	    	},//错误执行方法
 	    	success:function(data){
                 alert("添加试题成功");
-                window.location.href = "admin.jsp";
+                window.location.href = "showquestion.jsp";
 			} //成功执行方法
 	    });
 	    

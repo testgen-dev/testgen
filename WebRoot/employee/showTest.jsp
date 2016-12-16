@@ -29,7 +29,7 @@
 <!-- 			<form name="testgen"> -->
 			   <h3 align="center">选择公司</h3>
 			   <p>
-			    <select id ="company" title="company" name="company" size="4" onchange="comChange()">
+			    <select id ="company" size="4"> <!-- onchange="comChange()" -->
 					<!-- <option value="JS">JS</option>
 					<option value="HTML">HTML</option> -->
 				</select>
@@ -67,6 +67,8 @@
 	    alert(opValue);
 	};
  	$(document).ready(function(){
+ 	    var select = $("#company");
+		alert(select);
 	    $.ajax({
 			url:"http://112.74.62.114:8080/Entity/U1ff54ed338bfc/testgen/Company/",
 			type:"GET",
@@ -77,11 +79,13 @@
 		    success:function(data){
 				var company = data.Company;
 				var com = null;
-				var select = document.getElementById("company");
-				
+				select.empty();
+			/* 	var opt = new Option("sdsd", "sdadsa");
+				select.add(opt); */
 				for(var i=0;i< company.length;i++){
-				    var opp = new Option(company[i].companyname, company[i].userid);
-				    select.add(opp);
+				    /* var opp = new Option(company[i].companyname, company[i].userid);
+				    select.add(opp); */
+				    select.append("<option value='"+company[i].companyname+"'>"+company[i].companyname+"</option>");
 				   /*  $("#company").append( "<option value='"+company[i].companyname+"'>"+company[i].companyname+"</option>"); */
 			/* 	    if(com==null){
 						com = "<option value='"+company[i].companyname+"'>"+company[i].companyname+"</option>";
@@ -91,6 +95,7 @@
 				    } */
 				}
 				/* $("#company").html(com); */
+				/*  $("#company").selectmenu('refresh', true);   */
 		    }
 	    })
 	}) 

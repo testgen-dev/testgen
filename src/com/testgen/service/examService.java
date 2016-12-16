@@ -8,7 +8,6 @@ import java.io.Reader;
 import java.net.URL;
 import java.nio.charset.Charset;
 
-import org.apache.jasper.tagplugins.jstl.core.Url;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.stereotype.Service;

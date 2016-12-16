@@ -26,17 +26,7 @@
 	<div class="cont-main clearfix">
 
 		<div class="login form">
-			<div class="group">
-			  <div><a href= "showcominfo.jsp">华为有限公司</a></div>
-			  <hr>
-			  <div><a href= "">Baidu有限公司</a></div>
-			  <hr>
-			  <div><a href= "">Tencent有限公司</a></div>
-			  <hr>
-			  <div><a href= "">Alibaba有限公司</a></div>
-			  <hr>
-			  <br>
-			  <br>
+			<div class="group" id="showCompany">
 			</div>
 		</div>
 
@@ -48,14 +38,29 @@
 </div>
 
 <script>
-	$("#remember-me").click(function(){
-		var n = document.getElementById("remember-me").checked;
-		if(n){
-			$(".zt").show();
-		}else{
-			$(".zt").hide();
-		}
-	});
+	$(document).ready(function(){
+	    $.ajax({
+			url:"http://112.74.62.114:8080/Entity/U1ff54ed338bfc/testgen/Company/",
+			type:"GET",
+		    contentType: "application/json",
+		    error:function(){
+		    	alert("获取公司信息失败");
+		    },
+		    success:function(data){
+				var company = data.Company;
+				var com = null;
+				for(var i=0;i< company.length;i++){
+				    if(com==null){
+						com = "<div><a href= 'showcominfo.jsp?"+company[i].userid+"'>"+company[i].companyname+"</a></div><br>";
+				    }
+				    else{
+						com = com+" "+"<div><a href= 'showcominfo.jsp?"+company[i].userid+"'>"+company[i].companyname+"</a></div><br>";
+				    }
+				}
+				$("#showCompany").html(com);
+		    }
+	    })
+	})
 </script>
 </body>
 </html>

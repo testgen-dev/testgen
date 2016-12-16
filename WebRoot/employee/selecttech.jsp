@@ -24,12 +24,6 @@
 	</div>
 
 	<div class="cont-main clearfix">
-		<div class="index-tab">
-			<div class="index-slide-nav">
-				<a href="add.jsp">添加</a>
-				<a href="register.html">更新</a>			
-			</div>
-		</div>
 		<div class="login form">
 			<div class="group">
 			<form name="testgen">
@@ -48,10 +42,10 @@
                </p>
             
 			   <br><br>
-			   <div class="button">
-			        <button type="submit" class="login-btn register-btn" id="button" onclick="testgen()">开始考试</button>
+			   </form>
+			   	<div class="button">
+			        <button  class="login-btn register-btn" id="button">开始考试</button>
 		        </div>
-			    </form>
 			</div>
 		</div>
          
@@ -65,16 +59,8 @@
 <script src='../js/particles.js' type="text/javascript"></script>
 <script src='../js/background.js' type="text/javascript"></script>
 <script src='../js/layer/layer.js' type="text/javascript"></script>
-<script src='../js/index.js' type="text/javascript"></script>
 <script>
-	$("#remember-me").click(function(){
-		var n = document.getElementById("remember-me").checked;
-		if(n){
-			$(".zt").show();
-		}else{
-			$(".zt").hide();
-		}
-	});
+	
 	$(function(){ 
 	    $("select").multiselect({ 
 	    noneSelectedText: "==请选择==", 
@@ -82,18 +68,57 @@
 	    uncheckAllText: '全不选', 
 	    selectedList:4 
 	    }); 
-	    }); 
-	    
-	    
-	 function testgen(){
-         if(!document.testgen.tech.value) {
-             alert("请输入技术背景！"); 
+	    });  
+
+	$("#button").click(function(){
+          if(!document.testgen.tech.value){
+             	alert("请输入技术背景！"); 
              document.testgen.tech.focus(); 
              return false;
-         } else {
-            document.testgen.action="testgen.jsp";
-         }
-     }
+         } 
+         else { 
+       
+          var tech = null;
+          var pos = $('#tech :selected');
+          pos.each(function () {
+             if(tech == null){
+                 tech = $(this).html();
+             }
+             else { 
+        	 	 tech = tech+","+$(this).html();
+        		}
+          });
+          
+	 	 var position = location.search.replace(/(?:(?:^|.*&\s*)position\s*\=\s*([^&]*).*$)|^.*$/, "$1");
+	 	 var p = decodeURI(position);
+	 	 alert(p);
+	 	 var projectId = location.search.replace(/(?:(?:^|.*&\s*)projectId\s*\=\s*([^&]*).*$)|^.*$/, "$1");
+	  	 var comUserId = location.search.replace(/(?:(?:^|.*&\s*)comUserId\s*\=\s*([^&]*).*$)|^.*$/, "$1");
+	 	 var userId = document.cookie.replace(/(?:(?:^|.*;\s*)userid\s*\=\s*([^;]*).*$)|^.*$/, "$1");
+          
+          var grade={
+               employeeid : userId,
+               companyid : comUserId,
+               projectid : projectId,
+               positionname : p
+           }; 
+              
+	 	$.ajax({
+			url: "http://112.74.62.114:8080/Entity/U1ff54ed338bfc/testgen/Grade/",
+			type:"POST",
+			contentType: "application/json",
+			data:JSON.stringify(grade),
+			error:function(){
+				alert("添加grade失败");
+			},//错误执行方法
+			success:function(data){
+				alert("添加grade成功");
+			} //成功执行方法
+		}); 
+		  window.location.href = 'http://localhost:8080/testgen/employee/toup.html?&position='+position+"&tech="+tech;
+          } 
+
+       }); 
 </script>
 </body>
 </html>

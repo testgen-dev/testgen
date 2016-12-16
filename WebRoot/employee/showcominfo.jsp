@@ -15,38 +15,18 @@
     <script type="text/javascript" src="../js/jquery.ui.widget.js"></script>
     <script type="text/javascript" src="../js/jquery.multiselect.js"></script>
     <script src='../js/layer/layer.js' type="text/javascript"></script>
+	<script src='../js/jquery.min.js' type="text/javascript"></script>
 </head>
 <body>
 <div id="box"></div>
 <div class="cent-box">
 	<div class="cent-box-header">
-		<h1>公司详细信息</h1>
+		<h1>公司项目</h1>
 	</div>
 
 	<div class="cont-main clearfix">
-		<div class="index-tab">
-			<div class="index-slide-nav">
-				<a href="add.jsp">添加</a>
-				<a href="register.html">更新</a>			
-			</div>
+		<div class="login form" id="showProject">
 		</div>
-
-		<div class="login form">
-			<div class="group">
-			   <div>无人车项目</div>
-			   <hr>
-			      <div>前端工程师</div>
-			      <div><a href= "selecttech.jsp">应聘</a></div>
-			      
-			   <div>微店项目</div>
-			   <hr>
-			   <div>前端工程师</div>
-			       <div><a href="selecttech.jsp" >应聘</a></div>
-			   <br><br>
-			</div>
-			<br><br>
-		</div>
-
 	</div>
 </div>
 
@@ -54,20 +34,34 @@
 	<p> 手机试题招聘平台</p>
 </div>
 
-<script src='js/particles.js' type="text/javascript"></script>
-<script src='js/background.js' type="text/javascript"></script>
-<script src='js/jquery.min.js' type="text/javascript"></script>
-<script src='js/layer/layer.js' type="text/javascript"></script>
-<script src='js/index.js' type="text/javascript"></script>
+
 <script>
-	$("#remember-me").click(function(){
-		var n = document.getElementById("remember-me").checked;
-		if(n){
-			$(".zt").show();
-		}else{
-			$(".zt").hide();
-		}
-	});
+$(document).ready(function(){
+    var comUserId = location.search.substring(1);
+	if(comUserId.length==0)
+	    alert("传参错误"); 
+    $.ajax({
+		url:"http://112.74.62.114:8080/Entity/U1ff54ed338bfc/testgen/Projectx/?Projectx.userid=1481547736046",
+		type:"GET",
+	    contentType: "application/json",
+	    error:function(){
+	    	alert("获取项目信息失败");
+	    },
+	    success:function(data){
+			var projectArr = data.Projectx;
+			var com=null;
+			for(var i=0;i< projectArr.length;i++){
+			    if(com==null){
+					com = "<div class='group' ><a href= 'showposition.jsp?&projectId="+projectArr[i].id+"&positionStr="+projectArr[i].projectposition+"&comUserId="+comUserId+"'>"+projectArr[i].projectname+"</a><hr> <div>"+projectArr[i].projectcontent+"</div></div><br>";
+			    }else{
+					com = com+" "+ "<div class='group' ><a href= 'showposition.jsp?&projectId="+projectArr[i].id+"&positionStr="+projectArr[i].projectposition+"&comUserId="+comUserId+"'>"+projectArr[i].projectname+"</a><hr> <div>"+projectArr[i].projectcontent+"</div></div><br>";
+			    }
+			    $("#showProject").html(com);
+			}
+	    }
+    })
+});
+
 </script>
 </body>
 </html>

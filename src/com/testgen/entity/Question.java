@@ -4,54 +4,78 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Question {
-    private int questionid; //问题ID；
-    private String questionname;//问题的名称
-    private Character answer;//正确答案
-    private HashMap<Character,String> option;//问题的选项
-    private int fullscore;//满分
+    private long id; //问题ID；
+    private String content;//问题的名称
+    private String answer;//正确答案
+    private String option1;//问题的选项
+    private String option2;
+    private String option3;
+    private String option4;
     private int level;//分四个等级   20个题，5＊2＋5＊4＋5＊6＋5＊8＝100 ，1->2，2->4，3->6，4->8
-	private ArrayList<Technology>category;//题目所属类别，关联positionid
-    public int getQuestionid() {
-		return questionid;
+/*	private ArrayList<Technology>category;//题目所属类别，关联positionid
+*/
+    
+	public long getId() {
+		return id;
 	}
-	public void setQuestionid(int questionid) {
-		this.questionid = questionid;
+	public Question(long id, String content, String answer, String option1, String option2, String option3,
+		String option4, int level) {
+	super();
+	this.id = id;
+	this.content = content;
+	this.answer = answer;
+	this.option1 = option1;
+	this.option2 = option2;
+	this.option3 = option3;
+	this.option4 = option4;
+	this.level = level;
+}
+	public void setId(long id) {
+		this.id = id;
 	}
-	public String getQuestionname() {
-		return questionname;
+	public String getContent() {
+		return content;
 	}
-	public void setQuestionname(String questionname) {
-		this.questionname = questionname;
+	public void setContent(String content) {
+		this.content = content;
 	}
-	public Character getAnswer() {
+	public String getAnswer() {
 		return answer;
 	}
-	public void setAnswer(Character answer) {
+	public void setAnswer(String answer) {
 		this.answer = answer;
 	}
-	public HashMap<Character, String> getOption() {
-		return option;
+	public String getOption1() {
+		return option1;
 	}
-	public void setOption(HashMap<Character, String> option) {
-		this.option = option;
+	public void setOption1(String option1) {
+		this.option1 = option1;
 	}
-	public int getFullscore() {
-		return fullscore;
+	public String getOption2() {
+		return option2;
 	}
-	public void setFullscore(int fullscore) {
-		this.fullscore = fullscore;
+	public void setOption2(String option2) {
+		this.option2 = option2;
+	}
+	public String getOption3() {
+		return option3;
+	}
+	public void setOption3(String option3) {
+		this.option3 = option3;
+	}
+	public String getOption4() {
+		return option4;
+	}
+	public void setOption4(String option4) {
+		this.option4 = option4;
 	}
 	public int getLevel() {
 		return level;
 	}
 	public void setLevel(int level) {
 		this.level = level;
-	}
-	public ArrayList<Technology> getCategory() {
-		return category;
-	}
-	public void setCategory(ArrayList<Technology> category) {
-		this.category = category;
-	}
+	}  
+    
+	
     
 }

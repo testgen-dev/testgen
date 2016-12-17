@@ -32,30 +32,28 @@
 	       },
 	       success:function(data){
 	      
-		   console.log(data);
-		   console.log(data.length);
+/* 		   console.log(data);
+		   console.log(data.length); */
 		   var qa = null;
 		   var str = null;
 		       for (var i=0; i<data.length;i++){
 			      if(i == 0){
-			        str = "<div class='f' value="+data[i].id+"><span>"+i+"</span>"+data[i].content+"</div><div class='choose'><div class='input'><input type='radio' name="+i+" value='A'/><label for='1'>"+data[i].option1+"</label></div><div class='input'><input type='radio' name="+i+"  value='B'/><label for='1'>"+data[i].option2+"</label></div><div class='input'><input type='radio' name="+i+" value='C'/><label for='1'>"+data[i].option3+"</label></div><div class='input'><input type='radio' name="+i+" value='D'/><label for='1'>"+data[i].option4+"</label></div><br>";
+			        str = "<div class='f' value="+data[i].id+"><span>"+(i+1)+"、</span>"+data[i].content+"</div><div class='choose'><div class='input'><input type='radio' name="+i+" value='A'/><label for='1'>"+data[i].option1+"</label></div><div class='input'><input type='radio' name="+i+"  value='B'/><label for='1'>"+data[i].option2+"</label></div><div class='input'><input type='radio' name="+i+" value='C'/><label for='1'>"+data[i].option3+"</label></div><div class='input'><input type='radio' name="+i+" value='D'/><label for='1'>"+data[i].option4+"</label></div><br>";
 			      
 			      }
 			      else if(i<data.length-1){
 				  
-				    str = str + "<div class='f' value="+data[i].id+"><span>"+i+"</span>"+data[i].content+"</div><div class='choose'><div class='input'><input type='radio' name="+i+" value='A'/><label for='1'>"+data[i].option1+"</label></div><div class='input'><input type='radio' name="+i+"  value='B'/><label for='1'>"+data[i].option2+"</label></div><div class='input'><input type='radio' name="+i+" value='C'/><label for='1'>"+data[i].option3+"</label></div><div class='input'><input type='radio' name="+i+" value='D'/><label for='1'>"+data[i].option4+"</label></div><br>";
+				    str = str + "<div class='f' value="+data[i].id+"><span>"+(i+1)+"、</span>"+data[i].content+"</div><div class='choose'><div class='input'><input type='radio' name="+i+" value='A'/><label for='1'>"+data[i].option1+"</label></div><div class='input'><input type='radio' name="+i+"  value='B'/><label for='1'>"+data[i].option2+"</label></div><div class='input'><input type='radio' name="+i+" value='C'/><label for='1'>"+data[i].option3+"</label></div><div class='input'><input type='radio' name="+i+" value='D'/><label for='1'>"+data[i].option4+"</label></div><br>";
 				   
 			      }
 			      else {
-			        str = str + "<div class='f' value="+data[i].id+"><span>"+i+"</span>"+data[i].content+"</div><div class='choose'><div class='input'><input type='radio' name="+i+" value='A'/><label for='1'>"+data[i].option1+"</label></div><div class='input'><input type='radio' name="+i+"  value='B'/><label for='1'>"+data[i].option2+"</label></div><div class='input'><input type='radio' name="+i+" value='C'/><label for='1'>"+data[i].option3+"</label></div><div class='input'><input type='radio' name="+i+" value='D'/><label for='1'>"+data[i].option4+"</label></div><br>";
+			        str = str + "<div class='f' value="+data[i].id+"><span>"+(i+1)+"、</span>"+data[i].content+"</div><div class='choose'><div class='input'><input type='radio' name="+i+" value='A'/><label for='1'>"+data[i].option1+"</label></div><div class='input'><input type='radio' name="+i+"  value='B'/><label for='1'>"+data[i].option2+"</label></div><div class='input'><input type='radio' name="+i+" value='C'/><label for='1'>"+data[i].option3+"</label></div><div class='input'><input type='radio' name="+i+" value='D'/><label for='1'>"+data[i].option4+"</label></div><br>";
 				   
 			      }
 			      
 		       }
 		       $("#alltest").html(str);
 		        $("#button").click(function(){
-		          alert("hh");
-		          console.log("hah");
 		          
 		         qa ="{\"qa\":[";
 		          for (var i=0; i<data.length;i++){
@@ -70,7 +68,7 @@
 		              }
 		          }
 		          qa = qa+ "{\"userid\":"+userid+"}]}";
-		           console.log(qa);
+		          /*  console.log(qa); */
 		       $.ajax({
 			     url:"/testgen/exam/finish",
 			     type:"POST",
@@ -78,7 +76,7 @@
 			     contentType:"application/json",
 			     data:qa,
 			     success:function(data){
-				 window.location.href = 'http://localhost:8080/testgen/employee/showgrade.jsp?&position='+position+"&company="+company+"&project="+project+"&score="+data;
+ 				 window.location.href = 'http://localhost:8080/testgen/employee/showgrade.jsp?&position='+position+"&company="+company+"&project="+project+"&score="+data.mark;
 			     },
 		         error:function(){
 		             
@@ -95,6 +93,19 @@
 		   
 		   
 	</script>
+	
+	<script type="text/javascript">   
+	    function doPrint() {    
+	        winname = window.open('', "_blank",'');
+	        bdhtml=window.document.body.innerHTML;    
+	        sprnstr="<!--startprint-->";    
+	        eprnstr="<!--endprint-->";    
+	        prnhtml=bdhtml.substr(bdhtml.indexOf(sprnstr)+17);    
+	        prnhtml=prnhtml.substring(0,prnhtml.indexOf(eprnstr));    
+	        winname.document.body.innerHTML=prnhtml; 
+	        winname.print();     
+		}    
+	</script>
 </head>
 <body>
 <div id="box"></div>
@@ -106,11 +117,14 @@
 
 		<div class="login form">
 			<div class="group">
+			<!--startprint-->
 			  <form id="addtest2">
 			    <div id= "alltest"></div>
 			   </form>
+			 <!--endprint-->
 			   <div class="button">
 			    <button type="submit" class="login-btn register-btn" id="button" >提交</button>
+			    <button type="submit" class="login-btn register-btn"  onclick="doPrint()">打印</button>
 		       </div>
 			<div><br><br><br>
 			

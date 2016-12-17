@@ -69,12 +69,16 @@
 	    contentType: "application/json",
 	    data:JSON.stringify(grade),
 	    success:function(data){
-			alert("添加grade表成功");
+			
 	    },
 	    error: function(){
 		alert("添加grade表失败");
 	    }
-	})
+	});
+	  $("#button").click(function(){
+	      window.location.href = "http://localhost:8080/testgen/employee/showcompany.jsp";  
+	  })
+	
 	
 </script>
 </body>

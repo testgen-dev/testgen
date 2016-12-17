@@ -38,10 +38,10 @@
 <script>
 $(document).ready(function(){
     var comUserId = location.search.substring(1);
-	if(comUserId.length==0)
-	    alert("传参错误"); 
+/* 	if(comUserId.length==0)
+	    alert("传参错误");  */
     $.ajax({
-		url:"http://112.74.62.114:8080/Entity/U1ff54ed338bfc/testgen/Projectx/?Projectx.userid=1481547736046",
+		url:"http://112.74.62.114:8080/Entity/U1ff54ed338bfc/testgen/Projectx/?Projectx.userid="+comUserId,
 		type:"GET",
 	    contentType: "application/json",
 	    error:function(){

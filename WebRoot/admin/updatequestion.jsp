@@ -18,48 +18,49 @@
 	<!-- <script src='../js/background.js' type="text/javascript"></script> -->
 	<script src='../js/layer/layer.js' type="text/javascript"></script>
 	<script>
+	
 			        $.ajax({
 						url:"http://112.74.62.114:8080/Entity/U1ff54ed338bfc/testgen/Question/",
 				    	type:"GET",
 				    	contentType: "application/json",
 				    	error:function(){
-				    	    alert("获取试题失败");
+				    	    alert("刷新试题失败");
 				    	},//错误执行方法
 				    	success:function(data){
 				    	    var len = data.Question.length;
-				    	    var ques = null;
 				    	    for(var i=0 ;i<len; i++){
 				    	        var dtlist = data.Question[i];
-				    	        if (ques == null){
-				    	            ques = i+"&nbsp;&nbsp;" + dtlist.content+"&nbsp;&nbsp;"+dtlist.answer+"&nbsp;&nbsp;"+dtlist.level+"&nbsp;&nbsp;&nbsp;<button id="+dtlist.id+" onClick='delQuestion(this.id)'>删除</button></br><hr>";
-					    	        
-				    	        }
-				    	        else{
-				    	            ques = ques +" "+i+" "+dtlist.content+"&nbsp;&nbsp;"+dtlist.answer+"&nbsp;&nbsp;"+dtlist.level+"&nbsp;&nbsp;&nbsp;<button id="+dtlist.id+" onClick='delQuestion(this.id)'>删除</button></br><hr>";
-				    	            
-				    	        }
-				    	        $("#test").html(ques);
+				    	        var minutes = 1000*60;
+								var hours = minutes*60;
+								var days = hours*24;
+								var years = days*365;
+								var d = new Date();
+								var t = d.getTime();
+								var duration = t-dtlist.id;
+								var y = duration/years;
+								if (y >= 2){
+								   delQuestion(dtlist.id);
+								}
 			                }
+			                window.location.href = "showquestion.jsp";
 						} //成功执行方法
 				    });
 				    function delQuestion(qid){
-					alert("qid:"+qid);
-							            $.ajax({
-								            async: false,
-											url:"http://112.74.62.114:8080/Entity/U1ff54ed338bfc/testgen/Question/"+qid,
-									    	type:"DELETE",
-									    	contentType: "application/json",
-									    	error:function(){
-									    	    alert("删除试题失败");
-									    	},
-									    	success:function(data){
-									    	    console.log(data);
-									    	    alert("修改成功");
-									    	    window.location.reload();
-									    	}
-									    	
-								    	});
-				                    }
+				            $.ajax({
+					            async: false,
+								url:"http://112.74.62.114:8080/Entity/U1ff54ed338bfc/testgen/Question/?Question.id="+qid,
+						    	type:"DELETE",
+						    	contentType: "application/json",
+						    	error:function(){
+						    	    alert("删除试题失败");
+						    	},
+						    	success:function(data){
+						    	    console.log(data);
+						    	    alert("修改成功");
+						    	}
+						    	
+					    	});
+				        }
 			    </script>
 </head>
 <body>
@@ -73,7 +74,7 @@
 		<div class="index-tab">
 			<div class="index-slide-nav">
 				<a href="addquestion.jsp">添加</a>
-				<a href="updatequestion.jsp">更新</a>			
+				<a href="#">更新</a>			
 			</div>
 		</div>
 

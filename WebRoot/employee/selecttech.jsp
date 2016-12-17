@@ -110,7 +110,6 @@
 		    type: "POST",
 		    data:JSON.stringify(employee),
 		    success:function(data){
-				alert("添加employee成功");
 				window.location.href = 'http://localhost:8080/testgen/employee/showquiz.jsp?&position='+position+"&tech="+tech+"&company="+comUserId+"&project="+projectId;
 		    },
 	 	 	error:function(){

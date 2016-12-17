@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.testgen.entity.CorrectAndTestNum;
 import com.testgen.entity.Question;
 import com.testgen.service.examService;
 
@@ -33,6 +34,7 @@ public class ExamController {
 	}
 	
 	private static Map<Long, List<Question>> map = new HashMap<Long, List<Question>>();
+	
 	
 	@RequestMapping("/start")
 	public Object getPaper(@RequestParam (value="position")String position,@RequestParam(value="tech")String tech,@RequestParam(value="userId")Long userId){
@@ -128,8 +130,12 @@ public class ExamController {
 	
 	@RequestMapping(value="/finish" , method = RequestMethod.POST)
 	@ResponseBody
-	public int Marking(@RequestBody String data){
+	public Map<Object, Object> Marking(@RequestBody String data){
 		System.out.println("data:"+data);
+		
+		Map<Object, Object> resultMap = new HashMap<Object, Object>();
+		Map<Long, String> errorQueAndAnswer = new HashMap<Long, String>();
+		Map<Long, Integer> IdToCorrectNum = new HashMap<Long, Integer>();
 		int count = 0;
 		try {
 			JSONObject jObject = new JSONObject(data);
@@ -142,14 +148,21 @@ public class ExamController {
 				for(Question question : map.get(userId)){
 					if(jsonObject.getLong("questid")==question.getId())
 					{
-						System.out.println("ans:"+jsonObject.getString("ans"));
-						System.out.println("coans:"+question.getAnswer());
+						
+						//只要答了这道题就将其记录在IdToCorrectNum的testNUm中
+						IdToCorrectNum.put(question.getId(), 0);
+						
 						if(question.getAnswer().equals(jsonObject.get("ans")))
 						{
 							System.out.println("level:"+question.getLevel());
 							count = count+question.getLevel()*2;
+							//答对了就将其记录在correctNum中
+							IdToCorrectNum.put(question.getId(), 1);
 							break;
 						}
+						
+						errorQueAndAnswer.put(question.getId(), question.getAnswer());
+
 					}
 					else {
 						continue;
@@ -160,7 +173,19 @@ public class ExamController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		examService.WriteXML(IdToCorrectNum);
 		System.out.println(count);
-		return count;
+		
+		resultMap.put("mark", count);
+		resultMap.put("errorQuestion", errorQueAndAnswer);
+		return resultMap;
 	}
+	
+	@RequestMapping("/statistic")
+	public Map<Long, String> getQuesAccuracy(){
+		
+		
+		return examService.readXML();
+		
+	} 
 }

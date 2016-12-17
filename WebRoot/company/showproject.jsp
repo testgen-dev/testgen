@@ -31,10 +31,10 @@
 			    	    for(var i=0 ;i<len; i++){
 			    	        var dtlist = data.Projectx[i];
 			    	        if (proj == null){
-			    	            proj = i+"&nbsp;&nbsp; <a href='showrecom.jsp?id="+dtlist.id+"'>"+dtlist.projectname+"</a>&nbsp;&nbsp;"+"</br><hr>";
+			    	            proj = (i+1)+"、&nbsp;&nbsp; <a href='showrecom.jsp?id="+dtlist.id+"'>"+dtlist.projectname+"</a>&nbsp;&nbsp;"+"</br><hr>";
 			    	        }
 			    	        else{
-			    	            proj = proj +" "+i+"&nbsp;&nbsp;&nbsp;<a href='showrecom.jsp?id="+dtlist.id+"'>"+dtlist.projectname+"</a>&nbsp;&nbsp;"+"</br><hr>";
+			    	            proj = proj +" "+(i+1)+"、&nbsp;&nbsp;&nbsp;<a href='showrecom.jsp?id="+dtlist.id+"'>"+dtlist.projectname+"</a>&nbsp;&nbsp;"+"</br><hr>";
 			    	        }
 			    	        $("#test").html(proj);
 		                }
@@ -46,7 +46,7 @@
 <div id="box"></div>
 <div class="cent-box">
 	<div class="cent-box-header">
-		<h1>展示公司整个项目</h1>
+		<h1>公司项目</h1>
 	</div>
 
 	<div class="cont-main clearfix">
@@ -59,9 +59,9 @@
 
 		<div class="login form">
 			<div class="group">
-			    <table id="tbitem">
+<!-- 			    <table id="tbitem">
 					 <tr><td>公司的所有项目</td></tr>
-				</table>
+				</table> -->
 			    <div id="test"></div>
 			</div>
 		</div>

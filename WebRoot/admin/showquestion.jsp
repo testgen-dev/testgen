@@ -43,10 +43,11 @@
 						} //成功执行方法
 				    });
 				    function delQuestion(qid){
+					alert("qid:"+qid);
 							            $.ajax({
 								            async: false,
-											url:"http://112.74.62.114:8080/Entity/U1ff54ed338bfc/testgen/Question/?Question.id="+qid,
-									    	type:"PUT",
+											url:"http://112.74.62.114:8080/Entity/U1ff54ed338bfc/testgen/Question/"+qid,
+									    	type:"DELETE",
 									    	contentType: "application/json",
 									    	error:function(){
 									    	    alert("删除试题失败");
@@ -54,6 +55,7 @@
 									    	success:function(data){
 									    	    console.log(data);
 									    	    alert("修改成功");
+									    	    window.location.reload();
 									    	}
 									    	
 								    	});

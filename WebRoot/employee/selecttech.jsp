@@ -91,31 +91,33 @@
           
 	 	 var position = location.search.replace(/(?:(?:^|.*&\s*)position\s*\=\s*([^&]*).*$)|^.*$/, "$1");
 	 	 var p = decodeURI(position);
-	 	 alert(p);
 	 	 var projectId = location.search.replace(/(?:(?:^|.*&\s*)projectId\s*\=\s*([^&]*).*$)|^.*$/, "$1");
 	  	 var comUserId = location.search.replace(/(?:(?:^|.*&\s*)comUserId\s*\=\s*([^&]*).*$)|^.*$/, "$1");
-	 	 var userId = document.cookie.replace(/(?:(?:^|.*;\s*)userid\s*\=\s*([^;]*).*$)|^.*$/, "$1");
-          
-          var grade={
-               employeeid : userId,
-               companyid : comUserId,
-               projectid : projectId,
-               positionname : p
-           }; 
-              
-	 	$.ajax({
-			url: "http://112.74.62.114:8080/Entity/U1ff54ed338bfc/testgen/Grade/",
-			type:"POST",
-			contentType: "application/json",
-			data:JSON.stringify(grade),
-			error:function(){
-				alert("添加grade失败");
-			},//错误执行方法
-			success:function(data){
-				alert("添加grade成功");
-			} //成功执行方法
-		}); 
-		  window.location.href = 'http://localhost:8080/testgen/employee/toup.html?&position='+position+"&tech="+tech;
+	 	 var userId = document.cookie.replace(/(?:(?:^|.*;\s*)userid\s*\=\s*([^;]*).*$)|^.*$/, "$1");  
+	 	 console.log(userId);
+	 	 var userName = document.cookie.replace(/(?:(?:^|.*;\s*)username\s*\=\s*([^;]*).*$)|^.*$/, "$1");
+	 	 var telephone = document.cookie.replace(/(?:(?:^|.*;\s*)telephone\s*\=\s*([^;]*).*$)|^.*$/, "$1");
+	 	 var employee = {
+	 		employeeid : "1481964801797",
+	 		employeename : userName,
+	 		employeetel : telephone,
+	 		employeetech : tech
+	 	 };
+	 	 
+	 	 $.ajax({
+	 	    url:"http://112.74.62.114:8080/Entity/U1ff54ed338bfc/testgen/Employee/",
+		    contentType: "application/json",
+		    type: "POST",
+		    data:JSON.stringify(employee),
+		    success:function(data){
+				alert("添加employee成功");
+				window.location.href = 'http://localhost:8080/testgen/employee/showquiz.jsp?&position='+position+"&tech="+tech+"&company="+comUserId+"&project="+projectId;
+		    },
+	 	 	error:function(){
+	 	 	    alert("添加employee失败");
+	 	 	}
+	 	 });
+		   
           } 
 
        }); 

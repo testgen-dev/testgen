@@ -32,15 +32,16 @@ public class ExamController {
 		this.examService = examService;
 	}
 	
-	private Map<Long, List<Question>> Map = new HashMap<Long, List<Question>>();
+	private static Map<Long, List<Question>> map = new HashMap<Long, List<Question>>();
 	
 	@RequestMapping("/start")
-	public Object getPaper(@RequestParam (value="position")String position,@RequestParam(value="tech")String tech){
+	public Object getPaper(@RequestParam (value="position")String position,@RequestParam(value="tech")String tech,@RequestParam(value="userId")Long userId){
 		
 		String url = "http://112.74.62.114:8080/Entity/U1ff54ed338bfc/testgen/Question/";
 		JSONObject jsonObject = null;
 		System.out.println("position:"+position);
 		System.out.println("tech:"+tech);
+		System.out.println("userId"+userId);
 		try {
 			jsonObject = examService.readJsonFromUrl(url);
 		} catch (IOException e2) {
@@ -63,7 +64,8 @@ public class ExamController {
 		int level4 = 5;
 		List<Question> l1 = new ArrayList<Question>();
 		try {
-			for(int i=0;i<jsonArray.length();i++){
+			while(!(level1==0&&level2==0&&level3==0&&level4==0)){
+				int i = (int)(Math.random()*jsonArray.length());
 				JSONObject jsonObject2 = jsonArray.getJSONObject(i);
 				String string = jsonObject2.getString("category");
 				System.out.println("string:"+string);
@@ -118,14 +120,47 @@ public class ExamController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		map.put(userId, l1);
 		
 		return l1;	
 	}
 	
 	
-	@RequestMapping(value="/marking" , method = RequestMethod.POST)
+	@RequestMapping(value="/finish" , method = RequestMethod.POST)
 	@ResponseBody
-	public String Marking(@RequestBody String data){
-		return data;
+	public int Marking(@RequestBody String data){
+		System.out.println("data:"+data);
+		int count = 0;
+		try {
+			JSONObject jObject = new JSONObject(data);
+			JSONArray jsonArray = jObject.getJSONArray("qa");
+			System.out.println(jsonArray.get(0));
+			long userId = jsonArray.getJSONObject(jsonArray.length()-1).getLong("userid");
+			System.out.println("userId:"+userId);
+			for(int i= 0;i<jsonArray.length()-1;i++){
+				JSONObject jsonObject = jsonArray.getJSONObject(i);
+				for(Question question : map.get(userId)){
+					if(jsonObject.getLong("questid")==question.getId())
+					{
+						System.out.println("ans:"+jsonObject.getString("ans"));
+						System.out.println("coans:"+question.getAnswer());
+						if(question.getAnswer().equals(jsonObject.get("ans")))
+						{
+							System.out.println("level:"+question.getLevel());
+							count = count+question.getLevel()*2;
+							break;
+						}
+					}
+					else {
+						continue;
+					}
+				}
+			}
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		System.out.println(count);
+		return count;
 	}
 }

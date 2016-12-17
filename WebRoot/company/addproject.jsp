@@ -32,7 +32,7 @@
 
 		<div class="login form">
 			<div class="group">
-			<form id="project">
+			<form name="project">
 				<label>项目名称</label>
 				<br>
 				<input type="text" id="projectname" name="projectname" style="width:220px; ">
@@ -83,41 +83,45 @@
 	    }); 
 	    });
 	 $("#button").click(function(){
-        var projectname = document.getElementById("projectname").value;
-        var projectintro = document.getElementById("projectintro").value;
-        var projectposition = null;
-        var pos = $('#position :selected');
-            pos.each(function () {
-                if(projectposition == null){
-                    projectposition = $(this).html();
-                }
-                else {
-                    projectposition = projectposition+","+$(this).html();
-                    alert(projectposition);
-                }
-            });  
-       
-        alert(userid);
-        var project = {    
-                    projectname:projectname,
-                    projectcontent:projectintro,
-                    projectposition:projectposition,
-                    userid:userid
-                    };
-	    $.ajax({
-			url:"http://112.74.62.114:8080/Entity/U1ff54ed338bfc/testgen/Projectx/",
-	    	type:"POST",
-	    	contentType: "application/json",
-	    	data:JSON.stringify(project),
-	    	error:function(){
-	    	    alert("添加试题失败");
-	    	},//错误执行方法
-	    	success:function(data){
-                alert("添加项目成功");
-                window.location.href = "showproject.jsp";
-			} //成功执行方法
-	    });
-	    
+	     
+	      if(!document.project.position.value){
+	             alert("请输入职位！"); 
+	             document.testgen.tech.focus(); 
+	             return false;
+	      } 
+	      else{
+		        var projectname = document.getElementById("projectname").value;
+		        var projectintro = document.getElementById("projectintro").value;
+		        var projectposition = null;
+		        var pos = $('#position :selected');
+		            pos.each(function () {
+		                if(projectposition == null){
+		                    projectposition = $(this).html();
+		                }
+		                else {
+		                    projectposition = projectposition+","+$(this).html();
+		                }
+		            });  
+		       
+		        var project = {    
+		                    projectname:projectname,
+		                    projectcontent:projectintro,
+		                    projectposition:projectposition,
+		                    userid:userid
+		                    };
+			    $.ajax({
+					url:"http://112.74.62.114:8080/Entity/U1ff54ed338bfc/testgen/Projectx/",
+			    	type:"POST",
+			    	contentType: "application/json",
+			    	data:JSON.stringify(project),
+			    	error:function(){
+			    	    alert("添加试题失败");
+			    	},//错误执行方法
+			    	success:function(data){
+		                window.location.href = "showproject.jsp";
+					} //成功执行方法
+			    });
+	 		}
 	}); 
 </script>
 </body>

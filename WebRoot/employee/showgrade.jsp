@@ -30,7 +30,7 @@
 		<div class="login form">
 			<div class="group">
 			    <label>您此次的答卷得分为：</label>
-			    <h2>80分</h2>
+			    <h2 id="score"></h2>
 			</div>
 		</div>
 		<div class="button">
@@ -44,20 +44,38 @@
 	<p> 手机试题招聘平台</p>
 </div>
 
-<script src='js/particles.js' type="text/javascript"></script>
-<script src='js/background.js' type="text/javascript"></script>
-<script src='js/jquery.min.js' type="text/javascript"></script>
-<script src='js/layer/layer.js' type="text/javascript"></script>
-<script src='js/index.js' type="text/javascript"></script>
+
 <script>
-	$("#remember-me").click(function(){
-		var n = document.getElementById("remember-me").checked;
-		if(n){
-			$(".zt").show();
-		}else{
-			$(".zt").hide();
-		}
-	});
+	var companyId = location.search.replace(/(?:(?:^|.*&\s*)company\s*\=\s*([^&]*).*$)|^.*$/, "$1");
+	var projectId = location.search.replace(/(?:(?:^|.*&\s*)project\s*\=\s*([^&]*).*$)|^.*$/, "$1");
+	var positionName = location.search.replace(/(?:(?:^|.*&\s*)position\s*\=\s*([^&]*).*$)|^.*$/, "$1");
+	var score = location.search.replace(/(?:(?:^|.*&\s*)score\s*\=\s*([^&]*).*$)|^.*$/, "$1");
+	var userId = document.cookie.replace(/(?:(?:^|.*;\s*)userid\s*\=\s*([^;]*).*$)|^.*$/, "$1");
+	var positionname = decodeURI(positionName);
+	console.log(score);
+	$("#score").html(score);
+	
+	var grade = {
+		employeeid : userId,
+		companyid : companyId,
+		projectid : projectId,
+		positionname : positionname,
+		grade : parseInt(score)
+	};
+	
+	$.ajax({
+	    url:"http://112.74.62.114:8080/Entity/U1ff54ed338bfc/testgen/Grade/",
+	    type:"POST",
+	    contentType: "application/json",
+	    data:JSON.stringify(grade),
+	    success:function(data){
+			alert("添加grade表成功");
+	    },
+	    error: function(){
+		alert("添加grade表失败");
+	    }
+	})
+	
 </script>
 </body>
 </html>

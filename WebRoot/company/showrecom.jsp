@@ -33,19 +33,22 @@
 		    	var positions= new Array(); 
 		    	positions = dt.split(",");
 		    	var positionname = null;
+		    	var pass = 5;
 	    	    for (var i= 1;i<positions.length+1;i++){
 	    	        if (pos == null){
 	    	            pos = i+"&nbsp;&nbsp; <span>"+positions[i-1]+"</span><hr>";
 	    	            positionname = positions[i-1];	            
 			    	    $.ajax({
 			    	         async: false, 
-				    	     url:"http://112.74.62.114:8080/Entity/U1ff54ed338bfc/testgen/Grade/?Grade.companyid="+userid+"&Grade.projectid="+projectid+"&Grade.positionname="+positionname,
+				    	     url:"http://112.74.62.114:8080/Entity/U1ff54ed338bfc/testgen/Grade?Grade.companyid="+userid+"&Grade.projectid="+projectid+"&Grade.positionname="+positionname+"&Grade.grade=(gte)5",
 				    	     type:"GET",
 				    	     contentType:"application/json",
 				    	     error:function(){
 				    	         alert("获取成绩表失败");
 				    	     },
 				    	     success:function(data){
+				    		if(!data){
+				    		    console.log(data.Grade);
 				    	         var len = data.Grade.length;
 				    	         for(var k=0;k<len;k++){
 				    	             var dtlist = data.Grade[k];
@@ -56,30 +59,40 @@
 				    	                 pos = pos +",<a href='showemployee.jsp?employeeid="+dtlist.employeeid+"'>"+dtlist.employeeid+"</a><br>";
 				    	             }
 				    	         }
+				    	     
+				    	     }else{
+				    			alert("目前还没有合适的应聘者");		
 				    	     }
+				    		}
 		    	         });
 		    	        }
 	    	        else{
 	    	            pos = pos +" "+i+"&nbsp;&nbsp;&nbsp;<span>"+positions[i-1]+"</span><hr>";
-	    	            positionname = positions[i-1];   	            
+	    	            positionname = positions[i-1]; 
+	    	            console.log(userid+","+projectid+","+positionname);
 			    	    $.ajax({
 			    	         async: false, 
-				    	     url:"http://112.74.62.114:8080/Entity/U1ff54ed338bfc/testgen/Grade/?Grade.companyid="+userid+"&Grade.projectid="+projectid+"&Grade.positionname="+positionname,
+				    	     url:"http://112.74.62.114:8080/Entity/U1ff54ed338bfc/testgen/Grade?Grade.companyid="+userid+"&Grade.projectid="+projectid+"&Grade.positionname="+positionname+"&Grade.grade=(gte)5",
 				    	     type:"GET",
 				    	     contentType:"application/json",
 				    	     error:function(){
 				    	         alert("获取成绩表失败");
 				    	     },
 				    	     success:function(data){
-				    	         var len = data.Grade.length;
-				    	         for(var k=0;k<len;k++){
-				    	             var dtlist = data.Grade[k];
-				    	             if(k == 0){
-				    	                 pos = pos +"<a href='showemployee.jsp?employeeid="+dtlist.employeeid+"'>"+dtlist.employeeid+"</a>&nbsp;&nbsp;<br>";
-				    	             }
-				    	             else {
-				    	                 pos = pos +",<a href='showemployee.jsp?employeeid="+dtlist.employeeid+"'>"+dtlist.employeeid+"</a><br>";
-				    	             }
+				    		     if(!data){
+				    	             var len = data.Grade.length;
+					    	         for(var k=0;k<len;k++){
+					    	             var dtlist = data.Grade[k];
+					    	             if(k == 0){
+					    	                 pos = pos +"<a href='showemployee.jsp?employeeid="+dtlist.employeeid+"'>"+dtlist.employeeid+"</a>&nbsp;&nbsp;<br>";
+					    	             }
+					    	             else {
+					    	                 pos = pos +",<a href='showemployee.jsp?employeeid="+dtlist.employeeid+"'>"+dtlist.employeeid+"</a><br>";
+					    	             }
+					    	         }
+				    	         }
+				    	         else {
+				    	             alert("目前还没有合适的应聘者");		    	      
 				    	         }
 				    	     }
 		    	         });

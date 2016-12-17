@@ -24,16 +24,158 @@
     <script src='../js/layer/layer.js' type="text/javascript"></script>
 	<title>在线答题</title>
 	<script>
+	var position = location.search.replace(/(?:(?:^|.*&\s*)position\s*\=\s*([^&]*).*$)|^.*$/, "$1");
+	 var tech = location.search.replace(/(?:(?:^|.*&\s*)tech\s*\=\s*([^&]*).*$)|^.*$/, "$1");
+	 var userid = document.cookie.replace(/(?:(?:^|.*;\s*)userid\s*\=\s*([^;]*).*$)|^.*$/, "$1");
+	 var positionzh=decodeURI(position);
+	 var map = new cusHashMap();
 	    $.ajax({
-	       url:"/testgen/exam",
+	       url:"/testgen/exam/start?position="+positionzh+"&tech="+tech,
 	       contentType:"application/json",
 	       error:function(){
 	          alert("获取试题出错");
 	       },
 	       success:function(data){
-	          
+		   console.log(data);
+		   console.log(data.length);
+		   var str = null;
+		       for (var i=0; i<data.length;i++){
+			      if(i == 0){
+			        str = "<div class='swiper-slide'><div class='scores'><div class='f' value="+data[i].id+"><span>"+i+"</span>"+data[i].content+"</div><div class='choose'><div class='input'><input type='radio' name="+i+" value='A'/><label for='1'>"+data[i].option1+"</label></div><div class='input'><input type='radio' name="+i+"  value='B'/><label for='1'>"+data[i].option2+"</label></div><div class='input'><input type='radio' name="+i+" value='C'/><label for='1'>"+data[i].option3+"</label></div><div class='input'><input type='radio' name="+i+" value='D'/><label for='1'>"+data[i].option4+"</label></div><br></div></div></div>";
+			        var  opt= document.getElementsByName(""+i);
+			            for (var k = 0; k < opt.length; k++) {
+			                if (opt[k].checked == true) {
+			                    map.put(data[i].id,opt[k].value);
+			                }
+			            }
+			      }
+			      else{
+				  
+				    str = str + "<div class='swiper-slide'><div class='scores'><div class='f' value="+data[i].id+"><span>"+i+"</span>"+data[i].content+"</div><div class='choose'><div class='input'><input type='radio' name="+i+" value='A'/><label for='1'>"+data[i].option1+"</label></div><div class='input'><input type='radio' name="+i+"  value='B'/><label for='1'>"+data[i].option2+"</label></div><div class='input'><input type='radio' name="+i+" value='C'/><label for='1'>"+data[i].option3+"</label></div><div class='input'><input type='radio' name="+i+" value='D'/><label for='1'>"+data[i].option4+"</label></div><br></div></div></div>"
+				    var  opt= document.getElementsByName(""+i);
+			            for (var k = 0; k < opt.length; k++) {
+			                if (opt[k].checked == true) {
+			                    map.put(data[i].id,opt[k].value);
+			                }
+			            }
+			      }
+		       }
+		       $("#alltest").html(str);
+		       console.log(str);
 	       }
 	    });
+	       function submit(){
+		       map.put("userid",userid);
+		       $.ajax({
+			     url:"/exam/finish",
+			     data:map,
+			     type:"POST",
+			     success:function(data){
+				    alert("显示成绩成功");
+			     },
+		         error:function(){
+		             
+		             alert("显示成绩失败");
+		         }
+			   
+		       });
+		   }
+		   function cusHashMap(){  
+		       //定义长度  
+		       var length = 0;  
+		       //创建一个对象  
+		       var obj = new Object();  
+		     
+		       /** 
+		       * 判断Map是否为空 
+		       */  
+		       this.isEmpty = function(){  
+		           return length == 0;  
+		       };  
+		     
+		       /** 
+		       * 判断对象中是否包含给定Key 
+		       */  
+		       this.containsKey=function(key){  
+		           return (key in obj);  
+		       };  
+		     
+		       /** 
+		       * 判断对象中是否包含给定的Value 
+		       */  
+		       this.containsValue=function(value){  
+		           for(var key in obj){  
+		               if(obj[key] == value){  
+		                   return true;  
+		               }  
+		           }  
+		           return false;  
+		       };  
+		     
+		       /** 
+		       *向map中添加数据 
+		       */  
+		       this.put=function(key,value){  
+		           if(!this.containsKey(key)){  
+		               length++;  
+		           }  
+		           obj[key] = value;  
+		       };  
+		     
+		       /** 
+		       * 根据给定的Key获得Value 
+		       */  
+		       this.get=function(key){  
+		           return this.containsKey(key)?obj[key]:null;  
+		       };  
+		     
+		       /** 
+		       * 根据给定的Key删除一个值 
+		       */  
+		       this.remove=function(key){  
+		           if(this.containsKey(key)&&(delete obj[key])){  
+		               length--;  
+		           }  
+		       };  
+		     
+		       /** 
+		       * 获得Map中的所有Value 
+		       */  
+		       this.values=function(){  
+		           var _values= new Array();  
+		           for(var key in obj){  
+		               _values.push(obj[key]);  
+		           }  
+		           return _values;  
+		       };  
+		     
+		       /** 
+		       * 获得Map中的所有Key 
+		       */  
+		       this.keySet=function(){  
+		           var _keys = new Array();  
+		           for(var key in obj){  
+		               _keys.push(key);  
+		           }  
+		           return _keys;  
+		       };  
+		     
+		       /** 
+		       * 获得Map的长度 
+		       */  
+		       this.size = function(){  
+		           return length;  
+		       };  
+		     
+		       /** 
+		       * 清空Map 
+		       */  
+		       this.clear = function(){  
+		           length = 0;  
+		           obj = new Object();  
+		       }; 
+		   
+		   }
 	</script>
 </head>
 <body>
@@ -59,8 +201,8 @@
 		<div class="swipers">
 		<!-- 上下 -->
 		<div class="swiper-container">
-			<div class="swiper-wrapper">
-				<div class="swiper-slide">
+			<div class="swiper-wrapper" id="alltest">
+				<!-- <div class="swiper-slide">
 					<div class="scores">
 						<h3>题目</h3>
 						<div class="f"><span>1</span>第1题的题目</div>
@@ -71,8 +213,8 @@
 							<div class="input"><input type="radio" name="score" id="4"/><label for="4">选项4</label></div>
 						</div>
 					</div>
-				</div>
-				<div class="swiper-slide">
+				</div> -->
+				<!-- <div class="swiper-slide">
 					<div class="scores">
 						<h3>对于lamodaDIY的鞋子，您在以下几个方面的需求程度如何呢？</h3>
 						<div class="f"><span>2</span>款式独特性（1-5分）</div>
@@ -137,7 +279,7 @@
 						</div>
 					</div>
 				</div>
-			</div>
+			</div> -->
 			<div class="preNexts">
 				<div class="swiper-button-prev"><div class="pre"></div>上一题</div>
 				<div class="swiper-button-next"><div class="next"></div>下一题</div>
@@ -157,7 +299,7 @@
 					<p>点击提交确认交卷</p>
 				</div>
 			</div>
-			<a href="javascript:;" class="tijiao">提交</a>
+			<button onclick="submit()" class="tijiao">提交</button>
 		</div>
 	</section>
 	<script src="../swiper/swiper.min.js"></script>

@@ -23,19 +23,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	
 	<script>
 	    function funca() {
-			var Question = {
-				"content" : "今天是周几",
-				"option1" : "周五",
-				"type": [{"name":"ios"},{"name":"安卓"},{"name":"前端"}]
-			}
 			$.ajax({
-			    url:"http://112.74.62.114:8080/Entity/U1ff54ed338bfc/exam/Question/",
+			    url:"http://112.74.62.114:8080/Entity/U1ff54ed338bfc/testgen/Company/1481510827327",
 			    contentType: "application/json",
-			    type: "POST",
-			    data:JSON.stringify(Question),
-			    success:function(data){
-					console.log(data);
-			    }
+			    type: "DELETE",
 			})
 	    }
 	</script>

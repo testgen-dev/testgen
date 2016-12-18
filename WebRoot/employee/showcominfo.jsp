@@ -16,6 +16,11 @@
     <script type="text/javascript" src="../js/jquery.multiselect.js"></script>
     <script src='../js/layer/layer.js' type="text/javascript"></script>
 	<script src='../js/jquery.min.js' type="text/javascript"></script>
+<style type="text/css">
+    a:link {text-decoration:none;color:blue;}
+a:hover {text-decoration:underline;color:red;}a:active{text-decoration:none;color:yellow;}
+a:visited {text-decoration:none;color:green;}
+    </style>
 </head>
 <body>
 <div id="box"></div>
@@ -34,7 +39,9 @@
 	<p> 手机试题招聘平台</p>
 </div>
 
-
+<script src='../js/particles.js' type="text/javascript"></script>
+<script src='../js/background.js' type="text/javascript"></script>
+<script src='../js/layer/layer.js' type="text/javascript"></script>
 <script>
 $(document).ready(function(){
     var comUserId = location.search.substring(1);

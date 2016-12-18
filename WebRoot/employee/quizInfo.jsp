@@ -38,12 +38,20 @@
 			正确答案：D
 		</div> -->
 		</div>
+		<div class="button">
+			        <button type="submit" class="login-btn register-btn" id="button" onclick="funca()">确定</button>
+		</div>
+		<br>
+		<br>
 	</div>
 </div>
 
 <div class="footer">
 	<p> 手机试题招聘平台</p>
 </div>
+<script src='../js/particles.js' type="text/javascript"></script>
+<script src='../js/background.js' type="text/javascript"></script>
+<script src='../js/layer/layer.js' type="text/javascript"></script>
 <script>
 
 	var userid = document.cookie.replace(/(?:(?:^|.*;\s*)userid\s*\=\s*([^;]*).*$)|^.*$/, "$1");
@@ -68,7 +76,10 @@
 	       			$("#showQuizInfo").html(com);
 	       	    }
 	       	}
-	})
+	});
+	function funca(){
+	    window.location.href = "showcompany.jsp";
+	}
 </script>
 </body>
 </html>

@@ -47,7 +47,9 @@
 	<p> 手机试题招聘平台</p>
 </div>
 
-
+<script src='../js/particles.js' type="text/javascript"></script>
+<script src='../js/background.js' type="text/javascript"></script>
+<script src='../js/layer/layer.js' type="text/javascript"></script>
 <script>
 	var companyId = location.search.replace(/(?:(?:^|.*&\s*)company\s*\=\s*([^&]*).*$)|^.*$/, "$1");
 	var projectId = location.search.replace(/(?:(?:^|.*&\s*)project\s*\=\s*([^&]*).*$)|^.*$/, "$1");

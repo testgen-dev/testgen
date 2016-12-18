@@ -2,9 +2,13 @@ package com.testgen.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -68,9 +72,14 @@ public class ExamController {
 		int level3 = 5;
 		int level4 = 5;
 		List<Question> l1 = new ArrayList<Question>();
+		Set<Integer> solo = new HashSet<Integer>();
 		try {
 			while(!(level1==0&&level2==0&&level3==0&&level4==0)){
 				int i = (int)(Math.random()*jsonArray.length());
+				
+				if(!solo.add(i))
+					continue;
+				System.out.println("i:"+i);
 				JSONObject jsonObject2 = jsonArray.getJSONObject(i);
 				String string = jsonObject2.getString("category");
 				System.out.println("string:"+string);
@@ -188,9 +197,6 @@ public class ExamController {
 	
 	@RequestMapping("/quizInfo")
 	public List<ErrorAnswer> getQuizInfo(@RequestParam(value="userid")long userId){
-		
-		System.out.println("userid:" +userId);
-		
 		
 		return errorMap.get(userId);
 		

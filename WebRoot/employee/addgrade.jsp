@@ -70,7 +70,9 @@
 <div class="footer">
 	<p> 手机试题招聘平台</p>
 </div>
-
+<script src='../js/particles.js' type="text/javascript"></script>
+<script src='../js/background.js' type="text/javascript"></script>
+<script src='../js/layer/layer.js' type="text/javascript"></script>
 
 <script>
     var userid = document.cookie.replace(/(?:(?:^|.*;\s*)userid\s*\=\s*([^;]*).*$)|^.*$/, "$1");

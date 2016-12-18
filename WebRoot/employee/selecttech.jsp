@@ -20,7 +20,7 @@
 <div id="box"></div>
 <div class="cent-box">
 	<div class="cent-box-header">
-		<h1>公司详细信息</h1>
+		<h1>选择技术背景</h1>
 	</div>
 
 	<div class="cont-main clearfix">
@@ -98,7 +98,7 @@
 	 	 var userName = document.cookie.replace(/(?:(?:^|.*;\s*)username\s*\=\s*([^;]*).*$)|^.*$/, "$1");
 	 	 var telephone = document.cookie.replace(/(?:(?:^|.*;\s*)telephone\s*\=\s*([^;]*).*$)|^.*$/, "$1");
 	 	 var employee = {
-	 		employeeid : "1481964801797",
+	 		employeeid : userId,
 	 		employeename : userName,
 	 		employeetel : telephone,
 	 		employeetech : tech

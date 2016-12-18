@@ -15,6 +15,11 @@
     <script type="text/javascript" src="../js/jquery.ui.widget.js"></script>
     <script type="text/javascript" src="../js/jquery.multiselect.js"></script>
     <script src='../js/layer/layer.js' type="text/javascript"></script>
+   <style type="text/css">
+    a:link {text-decoration:none;color:green;}
+a:hover {text-decoration:underline;color:red;}a:active{text-decoration:none;color:yellow;}
+a:visited {text-decoration:none;color:rgba(15, 136, 235, 0.7);}
+    </style>
     <script>
       var projectid=window.location.search.slice(window.location.search.lastIndexOf("?")+4);
       var userid = document.cookie.replace(/(?:(?:^|.*;\s*)userid\s*\=\s*([^;]*).*$)|^.*$/, "$1");
@@ -32,6 +37,7 @@
 		    	var dt = data.Projectx[0].projectposition;
 		    	var positions= new Array(); 
 		    	positions = dt.split(",");
+		    	if(positions){
 		    	var positionname = null;
 		    	var pass = 5;
 	    	    for (var i= 1;i<positions.length+1;i++){
@@ -47,7 +53,7 @@
 				    	         alert("获取成绩表失败");
 				    	     },
 				    	     success:function(data){
-				    		if(!data){
+				    			if(data.Grade){
 				    		    console.log(data.Grade);
 				    	         var len = data.Grade.length;
 				    	         for(var k=0;k<len;k++){
@@ -56,7 +62,7 @@
 				    	                 pos = pos +"<a href='showemployee.jsp?employeeid="+dtlist.employeeid+"'>"+dtlist.employeeid+"</a>&nbsp;&nbsp;<br>";
 				    	             }
 				    	             else {
-				    	                 pos = pos +",<a href='showemployee.jsp?employeeid="+dtlist.employeeid+"'>"+dtlist.employeeid+"</a><br>";
+				    	                 pos = pos +"<a href='showemployee.jsp?employeeid="+dtlist.employeeid+"'>"+dtlist.employeeid+"</a><br>";
 				    	             }
 				    	         }
 				    	     
@@ -79,7 +85,7 @@
 				    	         alert("获取成绩表失败");
 				    	     },
 				    	     success:function(data){
-				    		     if(!data){
+				    		     if(data.Grade){
 				    	             var len = data.Grade.length;
 					    	         for(var k=0;k<len;k++){
 					    	             var dtlist = data.Grade[k];
@@ -87,7 +93,7 @@
 					    	                 pos = pos +"<a href='showemployee.jsp?employeeid="+dtlist.employeeid+"'>"+dtlist.employeeid+"</a>&nbsp;&nbsp;<br>";
 					    	             }
 					    	             else {
-					    	                 pos = pos +",<a href='showemployee.jsp?employeeid="+dtlist.employeeid+"'>"+dtlist.employeeid+"</a><br>";
+					    	                 pos = pos +"<a href='showemployee.jsp?employeeid="+dtlist.employeeid+"'>"+dtlist.employeeid+"</a><br>";
 					    	             }
 					    	         }
 				    	         }
@@ -99,7 +105,8 @@
 	    	        }
 	    	    }
 	    	    $("#test").html(pos);
-			} //成功执行方法
+		    	}
+		    } //成功执行方法
 	    });
 </script>
     
@@ -128,6 +135,8 @@
 <div class="footer">
 	<p> 手机试题招聘平台</p>
 </div>
-
+<script src='../js/particles.js' type="text/javascript"></script>
+<script src='../js/background.js' type="text/javascript"></script>
+<script src='../js/layer/layer.js' type="text/javascript"></script>
 </body>
 </html>

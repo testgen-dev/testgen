@@ -124,7 +124,8 @@
 			 <!--endprint-->
 			   <div class="button">
 			    <button type="submit" class="login-btn register-btn" id="button" >提交</button>
-			    <button type="submit" class="login-btn register-btn"  onclick="doPrint()">打印</button>
+			    <br>
+			    <button type="submit" class="login-btn register-btn" id="print" onclick="doPrint()">打印</button>
 		       </div>
 			<div><br><br><br>
 			
@@ -135,7 +136,9 @@
 <div class="footer">
 	<p> 手机试题招聘平台</p>
 </div>
-
+<script src='../js/particles.js' type="text/javascript"></script>
+<script src='../js/background.js' type="text/javascript"></script>
+<script src='../js/layer/layer.js' type="text/javascript"></script>
 
 </body>
 </html>

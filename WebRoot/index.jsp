@@ -23,10 +23,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	
 	<script>
 	    function funca() {
-			$.ajax({
+		/* 	$.ajax({
 			    url:"http://112.74.62.114:8080/Entity/U1ff54ed338bfc/testgen/Company/1481510827327",
 			    contentType: "application/json",
 			    type: "DELETE",
+			}) */
+			$.ajax({
+			    url:"http://58.196.130.215/testgen/exam/statistic",
+			    contentType: "application/json",
+			    type:"GET",
+			    success:function(data){
+					console.log(data[0]);
+			    }
 			})
 	    }
 	</script>

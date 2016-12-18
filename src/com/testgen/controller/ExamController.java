@@ -18,7 +18,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.sun.org.apache.xalan.internal.xsltc.compiler.util.ErrorMessages_pt_BR;
+import com.testgen.entity.Accuracy;
 import com.testgen.entity.CorrectAndTestNum;
+import com.testgen.entity.ErrorAnswer;
 import com.testgen.entity.Question;
 import com.testgen.service.examService;
 
@@ -34,7 +37,7 @@ public class ExamController {
 	}
 	
 	private static Map<Long, List<Question>> map = new HashMap<Long, List<Question>>();
-	
+	private static Map<Long, List<ErrorAnswer>> errorMap = new HashMap<Long, List<ErrorAnswer>>();
 	
 	@RequestMapping("/start")
 	public Object getPaper(@RequestParam (value="position")String position,@RequestParam(value="tech")String tech,@RequestParam(value="userId")Long userId){
@@ -130,12 +133,11 @@ public class ExamController {
 	
 	@RequestMapping(value="/finish" , method = RequestMethod.POST)
 	@ResponseBody
-	public Map<Object, Object> Marking(@RequestBody String data){
+	public int Marking(@RequestBody String data){
 		System.out.println("data:"+data);
 		
-		Map<Object, Object> resultMap = new HashMap<Object, Object>();
-		Map<Long, String> errorQueAndAnswer = new HashMap<Long, String>();
 		Map<Long, Integer> IdToCorrectNum = new HashMap<Long, Integer>();
+		List<ErrorAnswer> eList = new ArrayList<ErrorAnswer>();
 		int count = 0;
 		try {
 			JSONObject jObject = new JSONObject(data);
@@ -160,32 +162,37 @@ public class ExamController {
 							IdToCorrectNum.put(question.getId(), 1);
 							break;
 						}
-						
-						errorQueAndAnswer.put(question.getId(), question.getAnswer());
-
+						eList.add(new ErrorAnswer(question.getContent(),question.getAnswer() ));
 					}
 					else {
 						continue;
 					}
 				}
 			}
+			errorMap.put(userId, eList);
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		examService.WriteXML(IdToCorrectNum);
 		System.out.println(count);
-		
-		resultMap.put("mark", count);
-		resultMap.put("errorQuestion", errorQueAndAnswer);
-		return resultMap;
+		return count;
 	}
 	
 	@RequestMapping("/statistic")
-	public Map<Long, String> getQuesAccuracy(){
-		
+	public List<Accuracy> getQuesAccuracy(){
 		
 		return examService.readXML();
 		
 	} 
+	
+	@RequestMapping("/quizInfo")
+	public List<ErrorAnswer> getQuizInfo(@RequestParam(value="userid")long userId){
+		
+		System.out.println("userid:" +userId);
+		
+		
+		return errorMap.get(userId);
+		
+	}
 }

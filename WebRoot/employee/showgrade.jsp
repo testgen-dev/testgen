@@ -36,6 +36,9 @@
 		<div class="button">
 			        <button type="submit" class="login-btn register-btn" id="button">确定</button>
 		        </div>
+		<div class="button">
+			        <button type="submit" class="login-btn register-btn" id="feedback">答题反馈</button>
+		</div>
 
 	</div>
 </div>
@@ -76,7 +79,10 @@
 	    }
 	});
 	  $("#button").click(function(){
-	      window.location.href = "http://localhost:8080/testgen/employee/showcompany.jsp";  
+	      window.location.href = "showcompany.jsp";  
+	  });
+	  $("#feedback").click(function(){
+	      window.location.href = "quizInfo.jsp";
 	  })
 	
 	

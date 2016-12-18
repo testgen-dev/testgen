@@ -76,7 +76,7 @@
 			     contentType:"application/json",
 			     data:qa,
 			     success:function(data){
- 				 window.location.href = 'http://localhost:8080/testgen/employee/showgrade.jsp?&position='+position+"&company="+company+"&project="+project+"&score="+data.mark;
+ 				 window.location.href = 'http://localhost:8080/testgen/employee/showgrade.jsp?&position='+position+"&company="+company+"&project="+project+"&score="+data;
 			     },
 		         error:function(){
 		             

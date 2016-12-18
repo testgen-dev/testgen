@@ -179,6 +179,22 @@
 		#button:hover{
 			background: #80c3f7;
 		}
+		#feedback{
+			width: 100%;
+			background: #0f88eb;
+    		box-shadow: none;
+    		border: 0;
+    		border-radius: 3px;
+    		line-height: 41px;
+    		color: #fff;
+    		display: block;
+    		font-size: 15px;
+    		cursor: pointer;
+    		font-family: 'Microsoft Yahei';
+		}
+		#feedback:hover{
+			background: #80c3f7;
+		}
 		.remember{
 			margin-top: 10px;
 			line-height: 30px;

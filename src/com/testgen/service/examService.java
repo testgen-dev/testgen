@@ -24,6 +24,7 @@ import org.jdom2.output.XMLOutputter;
 import org.springframework.stereotype.Service;
 
 import com.testgen.controller.ExamController;
+import com.testgen.entity.Accuracy;
 import com.testgen.entity.CorrectAndTestNum;
 
 import junit.framework.Test;
@@ -116,9 +117,9 @@ public class examService {
 		
 	}
 	
-	public Map<Long, String> readXML(){
+	public List<Accuracy> readXML(){
 		SAXBuilder builder = new SAXBuilder();
-		Map<Long, String> map = new HashMap<Long, String>();
+		List<Accuracy> l1 = new ArrayList<Accuracy>();
 		try {
 			Document document = builder.build(new File("E://test.xml"));
 			Element root = document.getRootElement();
@@ -128,12 +129,12 @@ public class examService {
 				double b = Double.parseDouble(element.getChildText("correct"))/Double.parseDouble(element.getChildText("num"));
 				System.out.println("B:"+b);
 				DecimalFormat df = new DecimalFormat("###0.000");
-				map.put(l, df.format(b));
+				l1.add(new Accuracy(l, df.format(b)));
 			}
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
-		return map;
+		return l1;
 	}
 	
 }
